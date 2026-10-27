@@ -4,4 +4,6 @@
 
 線上版：https://60401ben-art.github.io/ase-3711-peer-map/
 
+一對一深入比較（OSAT 四家、台積電／Intel／三星競合量化、環旭 vs Jabil／鴻海／立訊）：https://60401ben-art.github.io/ase-3711-peer-map/h2h.html
+
 課堂研究用途，非投資建議。

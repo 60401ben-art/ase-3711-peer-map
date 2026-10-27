@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="日月光投控（3711）十場一對一對決：OSAT、台積電／Intel／三星競合量化、環旭 vs EMS 對手">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>3711 一對一競品對決</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 單欄閱讀流(最寬 1080px)；每場對決 = 數字對打條 + 面向判定表 + 現在／未來兩欄 */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --ink:#14161c; --ink-2:#4a4f5c; --ink-3:#7a7f8c;
+  --line:#dde0e6; --line-2:#eceef2;
+  --copper:#b25a1f; --copper-soft:#f6e6da;   /* 打線銅線：本頁唯一強調色 */
+  --s1:#2a78d6; --s2:#eb6834; --muted-bar:#aab3c2; --ref-bar:#c9ced8;
+  --good:#1a7f4b; --bad:#c23b31; --good-bg:#e5f3ea; --bad-bg:#fae6e4;
+  --f-display:"IBM Plex Sans Condensed","Noto Sans TC",system-ui,sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111318; --surface:#181b22; --ink:#eceef3; --ink-2:#b4b9c6; --ink-3:#868c9a;
+  --line:#2c313c; --line-2:#22262f; --copper:#e08a4f; --copper-soft:#3a2617;
+  --s1:#3987e5; --s2:#d95926; --muted-bar:#5d6678; --ref-bar:#3b4250;
+  --good:#5cc48a; --bad:#ef7b70; --good-bg:#16301f; --bad-bg:#3a1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111318; --surface:#181b22; --ink:#eceef3; --ink-2:#b4b9c6; --ink-3:#868c9a;
+  --line:#2c313c; --line-2:#22262f; --copper:#e08a4f; --copper-soft:#3a2617;
+  --s1:#3987e5; --s2:#d95926; --muted-bar:#5d6678; --ref-bar:#3b4250;
+  --good:#5cc48a; --bad:#ef7b70; --good-bg:#16301f; --bad-bg:#3a1c1a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1080px;margin:0 auto}
+header.top{padding-block:40px 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.08em;color:var(--copper);text-transform:uppercase}
+h1{font-family:var(--f-body);font-weight:900;font-size:clamp(28px,4.4vw,42px);line-height:1.2;margin:8px 0 10px;text-wrap:balance}
+h1 .tk{font-family:var(--f-display);font-weight:700;color:var(--copper)}
+.sub{color:var(--ink-2);max-width:70ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;font-size:13px;color:var(--ink-3);font-family:var(--f-mono)}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+nav.toc a{font-size:13.5px;color:var(--ink-2);text-decoration:none;border:1px solid var(--line);padding:3px 10px;border-radius:999px;background:var(--surface)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--copper);color:var(--copper);outline:none}
+section{padding-block:40px 8px}
+.stn{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.stn .code{font-family:var(--f-mono);font-size:12px;color:var(--copper);border:1px solid var(--copper);padding:1px 7px;border-radius:3px;white-space:nowrap}
+h2{font-size:clamp(21px,2.6vw,26px);font-weight:900;line-height:1.35;margin:0;text-wrap:balance}
+h3{font-size:17px;font-weight:700;margin:26px 0 8px}
+p{margin:0 0 12px;max-width:72ch}
+.lead{color:var(--ink-2);margin-bottom:18px}
+.en{font-family:var(--f-display);font-weight:600;color:var(--ink-2);font-size:.92em}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.tw{color:var(--ink-3);font-size:.82em;font-family:var(--f-mono)}
+ol.verdict{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+ol.verdict li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 16px;display:grid;grid-template-columns:auto 1fr;gap:12px}
+ol.verdict b.k{font-family:var(--f-display);color:var(--copper);font-size:14px;white-space:nowrap;padding-top:2px}
+.tbl{overflow-x:auto;margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:680px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line-2);vertical-align:top;text-align:left}
+thead th{background:var(--line-2);font-weight:700;font-size:13px;color:var(--ink-2);white-space:nowrap}
+td.r,th.r{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+tr.me td{background:var(--copper-soft)}
+tr.me td:first-child{box-shadow:inset 3px 0 0 var(--copper)}
+tbody tr:last-child td{border-bottom:none}
+.note{font-size:13px;color:var(--ink-3);margin:6px 0 0;max-width:none}
+.src{font-size:12.5px;color:var(--ink-3)}
+.src a,.sources a{color:var(--ink-3)}
+.chip{display:inline-block;font-size:12px;padding:0 7px;border-radius:3px;font-weight:700;white-space:nowrap}
+.chip.g{background:var(--good-bg);color:var(--good)} .chip.b{background:var(--bad-bg);color:var(--bad)} .chip.n{background:var(--line-2);color:var(--ink-2)}
+/* value-chain map */
+.vc td.c{text-align:center;font-size:17px;line-height:1}
+.vc td.c small{display:block;font-size:11.5px;color:var(--ink-3);margin-top:4px;line-height:1.3}
+.dot-full{color:var(--copper)} .dot-half{color:var(--ink-2)} .dot-none{color:var(--line)}
+.grp td{background:var(--bg);font-size:12.5px;font-weight:700;color:var(--ink-3);letter-spacing:.04em;padding:6px 12px}
+/* charts */
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 18px 10px;margin:16px 0 8px;position:relative}
+.fig h4{margin:0 0 2px;font-size:15px}
+.fig .cap{font-size:13px;color:var(--ink-3);margin:0 0 10px}
+.fig svg{display:block;width:100%;height:auto;overflow:visible}
+.fig svg text{fill:var(--ink-2);font-family:var(--f-mono);font-size:12px}
+.fig svg .lbl{fill:var(--ink);font-family:var(--f-body);font-size:13px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin:4px 0 6px}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12.5px;padding:6px 9px;border-radius:4px;line-height:1.5;white-space:nowrap;z-index:5;font-family:var(--f-mono)}
+details.tv{margin-top:6px} details.tv summary{font-size:13px;color:var(--ink-3);cursor:pointer}
+/* peer cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
+.card h3{margin:0 0 2px;font-size:16.5px}
+.card .who{font-size:12.5px;color:var(--ink-3);font-family:var(--f-mono);margin-bottom:10px}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:0 0 10px;font-size:13.5px}
+.card dt{color:var(--ink-3)} .card dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.card ul{margin:0;padding-left:18px;font-size:13.8px} .card li{margin-bottom:3px}
+.card .tag{font-size:12px;font-weight:700;color:var(--ink-3);margin:8px 0 2px;letter-spacing:.04em}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
+.box h3{margin-top:0}
+.box.plus{border-top:3px solid var(--good)} .box.minus{border-top:3px solid var(--bad)}
+.box ul{margin:0;padding-left:18px} .box li{margin-bottom:8px}
+.rate{font-family:var(--f-mono);letter-spacing:1px;color:var(--copper)}
+.sources ol{font-size:12.8px;color:var(--ink-3);padding-left:22px;line-height:1.6}
+.sources li{margin-bottom:4px;word-break:break-all}
+.disc{margin-top:26px;font-size:13px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px}
+a:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+/* duel blocks */
+.duel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 20px 14px;margin:22px 0 10px}
+.duel-hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:4px}
+.duel-hd h3{margin:0;font-size:19px;font-weight:900}
+.duel-hd h3 .vs{font-family:var(--f-display);color:var(--ink-3);font-weight:600;margin:0 6px;font-size:15px}
+.duel-hd .who{font-size:12.5px;color:var(--ink-3);font-family:var(--f-mono)}
+.threat{font-size:12.5px;font-weight:700;padding:1px 9px;border-radius:999px;white-space:nowrap}
+.threat.hi{background:var(--bad-bg);color:var(--bad)} .threat.mid{background:var(--copper-soft);color:var(--copper)} .threat.lo{background:var(--good-bg);color:var(--good)}
+.duel .one{font-size:15px;color:var(--ink);margin:8px 0 12px;max-width:none}
+.bars{display:grid;gap:10px;margin:10px 0 14px}
+.brow{display:grid;grid-template-columns:minmax(150px,210px) 1fr 64px;gap:10px;align-items:center}
+.brow .m{font-size:13.5px;color:var(--ink-2);line-height:1.35}
+.brow .m small{display:block;color:var(--ink-3);font-size:11.5px;font-family:var(--f-mono)}
+.brow .pair{display:grid;gap:3px}
+.brow .b{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.brow .b i{display:block;height:12px;border-radius:0 3px 3px 0;min-width:2px}
+.brow .b.a i{background:var(--s1)} .brow .b.r i{background:var(--s2)}
+.brow .w{font-size:12px;font-weight:700;text-align:center;border-radius:3px;padding:1px 4px}
+.brow .w.a{background:var(--good-bg);color:var(--good)} .brow .w.r{background:var(--bad-bg);color:var(--bad)} .brow .w.t{background:var(--line-2);color:var(--ink-2)}
+.keyl{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.keyl i{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+@media (max-width:620px){.brow{grid-template-columns:1fr 54px}.brow .m{grid-column:1 / -1}}
+.verdict-cell{font-weight:700;white-space:nowrap}
+.verdict-cell.a{color:var(--good)} .verdict-cell.r{color:var(--bad)} .verdict-cell.t{color:var(--ink-3)}
+.tl{list-style:none;padding:0;margin:0}
+.tl li{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:5px 0;border-bottom:1px dashed var(--line-2);font-size:14px}
+.tl li:last-child{border-bottom:none}
+.tl b{font-family:var(--f-mono);font-size:12.5px;color:var(--copper);font-weight:500;padding-top:2px}
+.mean{border-left:3px solid var(--copper);background:var(--copper-soft);padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0 4px;font-size:14.5px}
+.mean b{color:var(--copper)}
+.group-h{margin-top:46px;padding-top:6px;border-top:2px solid var(--ink)}
+/* coop vs comp */
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media (max-width:760px){.ledger{grid-template-columns:1fr}}
+.ledger .box h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ledger .big{font-family:var(--f-display);font-size:30px;font-weight:700;line-height:1.1}
+.ledger .plus .big{color:var(--good)} .ledger .minus .big{color:var(--bad)}
+.ledger table{min-width:0;font-size:13.5px}
+.ledger td,.ledger th{padding:7px 8px}
+.scale-meter{margin:18px 0 6px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.scale-meter .row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;margin:8px 0}
+.scale-meter .lab{font-size:13.5px;color:var(--ink-2)}
+.scale-meter .track{display:flex;height:26px;border-radius:4px;overflow:hidden;font-family:var(--f-mono);font-size:12px}
+.scale-meter .track span{display:flex;align-items:center;padding:0 8px;white-space:nowrap;color:#fff}
+@media (max-width:620px){.scale-meter .row{grid-template-columns:1fr}}
+.seg{display:grid;gap:8px;margin:10px 0}
+.seg .r{display:grid;grid-template-columns:96px 1fr 210px;gap:10px;align-items:center;font-size:13.5px}
+.seg .r .bar{height:16px;border-radius:0 3px 3px 0;background:var(--s1)}
+.seg .r .bar.lo{background:var(--muted-bar)}
+.seg .r .v{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-2)}
+@media (max-width:620px){.seg .r{grid-template-columns:90px 1fr}.seg .r .v{grid-column:2}}
+.back{font-size:13.5px;margin-top:12px}
+.duel .tbl td:first-child{min-width:92px;font-weight:500}
+.duel .tbl td.verdict-cell{min-width:84px}
+.back a{color:var(--copper)}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Head-to-head · OSAT · Foundry · EMS · 資料截至 2026-10-28</div>
+  <h1><span class="tk">3711</span> 日月光：十場一對一對決</h1>
+  <p class="sub">把日月光（含子公司環旭）跟三群對手一家一家拆開比：專業封測四家比優劣勢與擴產路線；台積電、Intel、三星三家量化「合作帶來多少營收、競爭拿走多少、未來可能威脅多少」；EMS 三家比環旭的處境。未來發展一律以公司官方說法（財報、法說逐字稿、交易所公告）與實際在做的擴廠、研發為準。</p>
+  <div class="meta"><span>藍＝日月光／環旭　橘＝對手</span><span>[E]＝本頁估算</span><span>非投資建議</span></div>
+  <nav class="toc" aria-label="章節">
+    <a href="#board">對決總表</a><a href="#a-amkor">vs Amkor</a><a href="#a-jcet">vs 長電</a><a href="#a-tfme">vs 通富</a><a href="#a-ht">vs 華天</a><a href="#b-tsmc">vs 台積電（競合量化）</a><a href="#b-intel">vs Intel</a><a href="#b-samsung">vs 三星</a><a href="#c-jabil">環旭 vs Jabil</a><a href="#c-honhai">環旭 vs 鴻海</a><a href="#c-lux">環旭 vs 立訊</a><a href="#sources">來源</a>
+  </nav>
+  <p class="back">← 產業定位、資本結構總覽請看 <a href="https://60401ben-art.github.io/ase-3711-peer-map/">3711 競品地圖（主報告）</a></p>
+</header>
+
+<section id="board">
+  <div class="stn"><span class="code">00 · SCOREBOARD</span><h2>十場對決一覽：日月光現在幾乎全贏，未來真正的威脅只有兩個：台積電自留與 Amkor 的美國產能</h2></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>對手</th><th>交手的地方</th><th>現在誰領先</th><th>未來 2–3 年</th><th>對日月光威脅</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="5">A. 專業封測 OSAT：直接對手</td></tr>
+        <tr><td>Amkor【美】</td><td>NVIDIA／hyperscaler 2.5D、HDFO、蘋果鏈 SiP、美國在地產能</td><td>日月光（規模 2.1 倍、毛利率高 10pp）</td><td>Amkor 拿下美國：台積電亞利桑那 10 年外包、NVIDIA US$1.5bn 預付款</td><td><span class="threat hi">高</span></td></tr>
+        <tr><td>長電科技【中】</td><td>中國客戶、國產 AI 晶片、海外韓國／新加坡廠的中階訂單</td><td>日月光（規模 2.3 倍、毛利率高 11pp）</td><td>2026 投資計畫上修到 RMB 182 億，跟 Amkor 同級；國產 2.5D 平台擴產</td><td><span class="threat mid">中</span></td></tr>
+        <tr><td>通富微電【中】</td><td>AMD 的 CPU／GPU 封測</td><td>日月光（規模 3.2 倍、毛利率高 12pp）</td><td>綁 AMD 擴產（蘇州、檳城），定增 RMB 42 億到位</td><td><span class="threat lo">低</span></td></tr>
+        <tr><td>華天科技【中】</td><td>記憶體、汽車、消費性傳統封裝</td><td>日月光（規模 5 倍、毛利率高 13pp）</td><td>2.5D 規模化量產、面板級（盤古）、併購華羿做功率元件</td><td><span class="threat lo">低</span></td></tr>
+        <tr class="grp"><td colspan="5">B. 晶圓廠自做封裝：競合者</td></tr>
+        <tr><td>台積電【台】</td><td>CoWoS 的 CoW 中段、oS 後段、測試；面板級 CoPoS</td><td>台積電拿走價值池約 85%，但日月光分到的份額逐年變大</td><td>合作 2027 約 US$7.4bn；可能被收回或分流 US$1.2–2.3bn [E]</td><td><span class="threat hi">高</span>（但合作＞競爭）</td></tr>
+        <tr><td>Intel【美】</td><td>EMIB-T 替代 CoWoS、對外接封裝單</td><td>Intel 還沒量產外部客戶</td><td>2027 支援客戶量產；外包夥伴是 Amkor 不是日月光</td><td><span class="threat mid">中</span>（長期）</td></tr>
+        <tr><td>三星【韓】</td><td>記憶體＋晶圓＋封裝一站式搶客製 ASIC</td><td>日月光（三星晶圓代工規模小）</td><td>HBM 封裝自建（天安 KRW 10 兆），一般記憶體模組外包給 OSAT</td><td><span class="threat lo">低</span></td></tr>
+        <tr class="grp"><td colspan="5">C. EMS：環旭（日月光持股約 74.7%）的對手</td></tr>
+        <tr><td>Jabil【美】</td><td>AI 資料中心的電源、光通訊、板卡</td><td>Jabil（AI 營收是環旭雲端營收的 10 倍以上、營益率高約 3pp）</td><td>Jabil 再加 400 萬平方英尺產能；環旭擴 AI 加速卡、1.6T 矽光引擎</td><td><span class="threat mid">中</span></td></tr>
+        <tr><td>鴻海【台】</td><td>AI 伺服器、CPO 交換器、電源</td><td>鴻海（單季營收是環旭 40 倍）</td><td>鴻海做整櫃，環旭做板卡與模組，正面重疊有限</td><td><span class="threat lo">低</span>～<span class="threat mid">中</span></td></tr>
+        <tr><td>立訊精密【中】</td><td>蘋果穿戴（AirPods／Watch）SiP 與組裝、光模組</td><td>立訊（營收 6 倍、毛利率高 3pp）</td><td>立訊擴 800G 光模組到約 10 條線、224G/448G 銅連接；環旭押 AI 眼鏡 SiP</td><td><span class="threat hi">高</span>（消費電子）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">威脅等級是本頁研究判斷，依「對方正在擴的產能／技術跟日月光營收重疊多少」評估。數字皆為各公司最新一期公開資料，時點見每場對決與文末。</p>
+</section>
+
+<!-- ============ A. OSAT ============ -->
+<section>
+  <div class="stn group-h"><span class="code">A · OSAT</span><h2>專業封測：四家直接對手</h2></div>
+  <p class="lead">同樣做封裝測試，比的是規模、AI 先進封裝的份額、毛利率與擴產火力。日月光 ATM（封測本業）2025 年 US$12.3bn，是四家裡任何一家的 1.8–5 倍。</p>
+
+  <!-- Amkor -->
+  <article class="duel" id="a-amkor">
+    <div class="duel-hd"><h3>日月光<span class="vs">VS</span>Amkor</h3><span class="who">AMKR【美】· 全球第二大 OSAT · 3Q26</span><span class="threat hi">威脅：高</span></div>
+    <p class="one">現在日月光全面領先：規模約 2 倍、同季毛利率高 10 個百分點。但 Amkor 在 2026 年連拿兩張美國長約（台積電、NVIDIA），把「美國製造」這塊整個拿走。這是日月光現在最明顯的缺口。</p>
+    <div class="bars" data-duel='[
+      {"m":"封測營收 2025","u":"US$bn","a":12.3,"r":6.71,"w":"a"},
+      {"m":"同季封測營收 2Q26","u":"US$bn","a":3.99,"r":1.90,"w":"a","n":"日月光 NT$126.1bn÷31.6 [E]"},
+      {"m":"同季毛利率 2Q26","u":"%","a":27.3,"r":16.8,"w":"a"},
+      {"m":"運算（AI）占封測營收","u":"%","a":30,"r":26,"w":"a","n":"日月光 2Q26／Amkor 3Q26"},
+      {"m":"2026 資本支出","u":"US$bn","a":10.5,"r":2.5,"w":"a"},
+      {"m":"有息負債／權益","u":"%，越低越好","a":65,"r":52,"w":"r"}
+    ]' data-rival="Amkor"></div>
+    <div class="tbl"><table>
+      <thead><tr><th>面向</th><th>日月光</th><th>Amkor</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>AI 先進封裝</td><td>LEAP 2026 &gt;US$3.5bn 再多「幾億」，2027 目標翻倍；CoWoS full process 2026 約 US$0.3bn</td><td>NVIDIA 新合作、hyperscaler CPU 的 HDFO 量產；運算 4Q YoY &gt;50%</td><td class="verdict-cell a">日月光</td></tr>
+        <tr><td>產品組合</td><td>運算 30%、測試占 ATM 19%</td><td>通訊 37%（蘋果鏈）、運算 26%、車用工業 22%、消費 15%；先進產品占 82%</td><td class="verdict-cell a">日月光（較不依賴手機）</td></tr>
+        <tr><td>美國產能</td><td>只有 Fremont、San Jose 的測試與研發；公司說製程「先在台灣做」</td><td>亞利桑那園區最多約 US$12bn，Phase 1 2027 年底完工、客戶 2028 年底量產；CHIPS 最高 US$407m</td><td class="verdict-cell r">Amkor</td></tr>
+        <tr><td>擴產資金</td><td>主要靠借款，配息率約 70%；負自由現金流「會持續一段時間」</td><td>2025 年起與 12 家客戶簽預付款；NVIDIA 再給 US$1.5bn 多年期預付款</td><td class="verdict-cell r">Amkor（風險分給客戶）</td></tr>
+        <tr><td>大客戶綁定</td><td>台積電 CoWoS 外溢的主要承接者</td><td>台積電 10 年協議：在亞利桑那向 Amkor 採購封測（含 CoWoS）；Intel EMIB 首度外包也選 Amkor（媒體）</td><td class="verdict-cell t">各有所長</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="box"><h3 style="font-size:15.5px">現在的差異</h3><ul>
+        <li>規模與獲利：同樣是 2Q26，日月光封測營收約 US$4.0bn [E]，Amkor 1.9bn；毛利率 27.3% 對 16.8%。Amkor 3Q26 回升到 18.3%，日月光 3Q 指引 28–29%，差距沒有縮小。</li>
+        <li>定位：日月光是台積電 CoWoS 生態系「在台灣」的延伸產能；Amkor 是「台灣以外」的備援，客戶選它多半是為了地緣分散。</li>
+      </ul></div>
+      <div class="box"><h3 style="font-size:15.5px">未來發展（官方說法與在做的事）</h3><ul class="tl">
+        <li><b>2026/06</b>台積電與 Amkor 簽 10 年協議，在亞利桑那採購先進封測（含 CoWoS）</li>
+        <li><b>2026/07</b>NVIDIA US$1.5bn 多年期協議，預付款支應美國（含亞利桑那）擴產</li>
+        <li><b>2026</b>capex 約 US$2.5bn；2027 年光廠房就超過 US$2bn</li>
+        <li><b>2027 底</b>亞利桑那 Phase 1 完工、Phase 2 動工；韓國新廠完工</li>
+        <li><b>2028</b>韓國產能比 2025 年多 40%；亞利桑那客戶量產（年底）</li>
+        <li><b>技術</b>2.5D、HDFO 量產；fan-out bridge 2027 年底到 2028；Intel EMIB 外包（媒體：韓國松島 K5）</li>
+      </ul></div>
+    </div>
+    <p class="mean"><b>對日月光的意義：</b>2027 年前日月光的規模與毛利率領先不會變，因為 Amkor 美國廠 2028 年底才量產。但「美國製造」的 AI 封裝訂單會優先給 Amkor，若關稅或在地化要求升高，這是日月光沒有對應方案的缺口（公司說製程先在台灣做到規模）。要盯的是 Amkor 毛利率能不能突破 21%。</p>
+  </article>
+
+  <!-- JCET -->
+  <article class="duel" id="a-jcet">
+    <div class="duel-hd"><h3>日月光<span class="vs">VS</span>長電科技 JCET</h3><span class="who">600584【中】· 中國最大 OSAT · 3Q26 季報</span><span class="threat mid">威脅：中</span></div>
+    <p class="one">長電是中國版的日月光：同樣全品項、也有海外廠（韓國、新加坡），而且正在用國資加碼。2026 年投資計畫從 RMB 110 億上修到 182 億（約 US$2.5bn [E]），火力已經跟 Amkor 同級。但毛利率只有 16%，最賺的台積電 CoWoS 外溢單拿不到。</p>
+    <div class="bars" data-duel='[
+      {"m":"封測營收 2025","u":"US$bn","a":12.3,"r":5.41,"w":"a","n":"長電 RMB 38.87bn÷7.18 [E]"},
+      {"m":"毛利率","u":"%","a":27.3,"r":16.0,"w":"a","n":"日月光 2Q26／長電前三季"},
+      {"m":"最新營收年增","u":"%","a":36,"r":13.5,"w":"a","n":"日月光 ATM 2Q26／長電 3Q26"},
+      {"m":"2026 資本支出（計畫）","u":"US$bn","a":10.5,"r":2.53,"w":"a","n":"長電 RMB 182 億÷7.18 [E]"},
+      {"m":"有息負債／權益","u":"%，越低越好","a":65,"r":43,"w":"r"}
+    ]' data-rival="長電"></div>
+    <div class="tbl"><table>
+      <thead><tr><th>面向</th><th>日月光</th><th>長電</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>先進封裝技術</td><td>CoWoS 外包＋full process、FoCoS、VIPack</td><td>XDFOI® 平台已量產（2D／2.5D／3D）；公司稱「量產一代、驗證一代、研發一代」</td><td class="verdict-cell a">日月光（有台積電生態系）</td></tr>
+        <tr><td>市場</td><td>全球，AI 主力是美系 GPU／ASIC</td><td>中國國產替代＋國際客戶；美系先進 AI 晶片受出口管制</td><td class="verdict-cell t">各占一邊</td></tr>
+        <tr><td>獲利</td><td>ATM 毛利率 27.3%（2Q26）</td><td>前三季 16.0%（年增 2.3pp）；前三季扣非淨利年增 99%</td><td class="verdict-cell a">日月光</td></tr>
+        <tr><td>資本結構</td><td>家族控股、舉債擴產</td><td>華潤（央企）22.53% 控股；定增最多 RMB 65 億已獲國資委批覆（10/23）</td><td class="verdict-cell r">長電（國資撐腰、負債較低）</td></tr>
+        <tr><td>新領域</td><td>EMS（環旭）、CPO 年底小量</td><td>汽車電子專廠（上海臨港）、收購晟碟（SanDisk 上海）80% 做快閃記憶體封測、CPO 已交客戶樣品</td><td class="verdict-cell t">平手</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="box"><h3 style="font-size:15.5px">現在的差異</h3><ul>
+        <li>長電 3Q26 營收 RMB 114.3 億（+13.5%），歸母淨利 7.7 億（+60%）。公司說原因是「AI 基礎設施＋國產替代」、稼動率高檔、高附加值產品增加。</li>
+        <li>規模差 2.3 倍，毛利率差 11 個百分點。差距主要在 AI 先進封裝：日月光有 LEAP，長電的 2.5D 還在「推進量產」。</li>
+      </ul></div>
+      <div class="box"><h3 style="font-size:15.5px">未來發展（官方公告）</h3><ul class="tl">
+        <li><b>2026/03</b>上海臨港汽車電子專業封測工廠投產</li>
+        <li><b>2026/06</b>臨港「東方芯港」高端先進封測工廠，總投資 RMB 78 億，一期 2028 下半年完成</li>
+        <li><b>2026/09</b>定增 ≤RMB 65 億，四個項目：高性能計算先進封裝擴產 RMB 23.5 億（江陰，20 個月）、AI 資料中心電源模組 FCLGA 16.4 億、晶圓級封裝升級 18.3 億、高容量記憶體 SiP 18.5 億</li>
+        <li><b>2026</b>投資計畫 RMB 110 億 → 182 億</li>
+        <li><b>技術</b>2026 研發重點：2.5D/3D、超大尺寸、面板級、玻璃基板、光電合封（CPO）</li>
+      </ul></div>
+    </div>
+    <p class="mean"><b>對日月光的意義：</b>長電擴的四個項目（HPC 2.5D、AI 電源模組、晶圓級、記憶體）都是日月光也在做的品項，但主要服務中國客戶。對日月光的威脅集中在兩處：一是日月光在中國的成熟產品廠，二是國際客戶的中階訂單（長電韓國、新加坡廠）。AI 主戰場暫時碰不到。</p>
+  </article>
+
+  <!-- TFME -->
+  <article class="duel" id="a-tfme">
+    <div class="duel-hd"><h3>日月光<span class="vs">VS</span>通富微電 TFME</h3><span class="who">002156【中】· AMD 最大封測夥伴 · 1H26</span><span class="threat lo">威脅：低</span></div>
+    <p class="one">通富是「AMD 的封測廠」：2016 年買下 AMD 蘇州、檳城廠，第一大客戶占營收 52%。它跟日月光的交集主要在 AMD，而 AMD 最先進的 MI 系列 CoWoS 走的是台積電加日月光／矽品／Amkor，不是通富。</p>
+    <div class="bars" data-duel='[
+      {"m":"封測營收 2025","u":"US$bn","a":12.3,"r":3.89,"w":"a","n":"通富 RMB 27.92bn÷7.18 [E]"},
+      {"m":"毛利率","u":"%","a":27.3,"r":15.5,"w":"a","n":"日月光 2Q26／通富 1H26"},
+      {"m":"最新營收年增","u":"%","a":36,"r":23,"w":"a","n":"日月光 ATM 2Q26／通富 1H26"},
+      {"m":"前五大客戶占營收 2025","u":"%，越低越好","a":46.5,"r":69.5,"w":"a"},
+      {"m":"有息負債／權益","u":"%，越低越好","a":65,"r":113,"w":"a"}
+    ]' data-rival="通富"></div>
+    <div class="tbl"><table>
+      <thead><tr><th>面向</th><th>日月光</th><th>通富</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>客戶集中</td><td>前五大 46.5%</td><td>第一大（AMD）52.3%、前五大 69.5%</td><td class="verdict-cell a">日月光</td></tr>
+        <tr><td>本業獲利</td><td>ATM 營業利益率約 16%（2Q26）</td><td>1H26 歸母淨利 RMB 17.2 億，但扣非只有 7.5 億，一半以上是非經常性收益</td><td class="verdict-cell a">日月光</td></tr>
+        <tr><td>先進封裝</td><td>CoWoS 外溢、測試</td><td>VISionS™ 平台（矽中介層、垂直堆疊、嵌入式多橋接）；多款產品批量導入高效能運算、推論晶片</td><td class="verdict-cell a">日月光</td></tr>
+        <tr><td>擴產資金</td><td>借款</td><td>定增 RMB 42.2 億（2026/8 到位，發行價 55.38 元）；2026 投資 RMB 91 億（研報）</td><td class="verdict-cell t">—</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="box"><h3 style="font-size:15.5px">現在的差異</h3><ul>
+        <li>通富 1H26 營收 RMB 160.4 億（+23%），公司說靠「AI＋存儲＋車載＋國產客戶」四條曲線；通富超威蘇州、檳城上半年營收創新高，受惠 AMD EPYC 與 Instinct 放量。</li>
+        <li>財務最緊：有息負債／權益 113%，是同業最高，所以要靠定增。</li>
+      </ul></div>
+      <div class="box"><h3 style="font-size:15.5px">未來發展（官方公告）</h3><ul class="tl">
+        <li><b>2026/08</b>定增 RMB 42.2 億到位：存儲晶片、車載等新興應用、晶圓級、高效能運算與通訊四個擴產項目</li>
+        <li><b>在建</b>各廠改造約 3.9 萬平方米完成、在建約 14 萬平方米；蘇州、檳城各建 110kV 變電站</li>
+        <li><b>技術</b>CPO 通過可靠性驗證（支援 1.6T 以上光互連）、布局混合鍵合（Hybrid Bonding）、LPDDR 16 層堆疊</li>
+      </ul></div>
+    </div>
+    <p class="mean"><b>對日月光的意義：</b>通富的成長幾乎等於 AMD 的成長，跟日月光在 AI 先進封裝的重疊有限。唯一要注意的是：如果 AMD 把更多 chiplet 後段（凸塊、測試）轉給通富檳城（2025/10 已投產凸塊與晶圓測試），日月光在 AMD 的份額可能被擠壓。</p>
+  </article>
+
+  <!-- Huatian -->
+  <article class="duel" id="a-ht">
+    <div class="duel-hd"><h3>日月光<span class="vs">VS</span>華天科技 HT-Tech</h3><span class="who">002185【中】· 中國第三大 OSAT · 1H26</span><span class="threat lo">威脅：低</span></div>
+    <p class="one">華天的成長率（1H26 +35%）跟日月光差不多，但成長來自記憶體漲價與傳統封裝。本業獲利很薄：上半年扣非淨利只有 RMB 2.5 億。它跟日月光比較像「同一個產業、不同的戰場」。</p>
+    <div class="bars" data-duel='[
+      {"m":"封測營收 2025","u":"US$bn","a":12.3,"r":2.40,"w":"a","n":"華天 RMB 17.21bn÷7.18 [E]"},
+      {"m":"毛利率","u":"%","a":27.3,"r":14.3,"w":"a","n":"日月光 2Q26／華天 1H26"},
+      {"m":"最新營收年增","u":"%","a":36,"r":35,"w":"t"},
+      {"m":"前五大客戶占營收 2025","u":"%，越低越好","a":46.5,"r":25.3,"w":"r"},
+      {"m":"有息負債／權益","u":"%，越低越好","a":65,"r":72,"w":"a"}
+    ]' data-rival="華天"></div>
+    <div class="tbl"><table>
+      <thead><tr><th>面向</th><th>日月光</th><th>華天</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>產品重心</td><td>AI 先進封裝＋測試</td><td>記憶體、汽車電子、消費性；海外有 Unisem（馬來西亞，2019 併購）</td><td class="verdict-cell a">日月光（附加價值高）</td></tr>
+        <tr><td>客戶分散</td><td>前五大 46.5%</td><td>前五大 25.3%</td><td class="verdict-cell r">華天</td></tr>
+        <tr><td>本業獲利</td><td>ATM 營業利益率約 16%</td><td>1H26 歸母淨利 RMB 8.1 億，扣非僅 2.5 億（扣非淨利率約 2.4%）</td><td class="verdict-cell a">日月光</td></tr>
+        <tr><td>先進封裝</td><td>CoWoS 類量產</td><td>2.5D 平台「推進規模化量產」，完成 2.5D SiCS 開發；面板級封裝（盤古半導體）部分投產</td><td class="verdict-cell a">日月光</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="box"><h3 style="font-size:15.5px">現在的差異</h3><ul>
+        <li>華天 2Q26 單季營收 RMB 57.1 億創新高，公司說汽車電子、記憶體封裝規模擴大；稼動率改善讓獲利逐季恢復。</li>
+        <li>規模差 5 倍，毛利率差 13 個百分點，是四家裡差距最大的。</li>
+      </ul></div>
+      <div class="box"><h3 style="font-size:15.5px">未來發展（官方公告）</h3><ul class="tl">
+        <li><b>2026/10</b>發行股份收購華羿微電 100% 完成過戶：延伸到功率元件設計與自有品牌</li>
+        <li><b>擴產</b>南京、江蘇（華天先進封裝）、盤古半導體（面板級）陸續投產；研報稱 2026 營收目標 RMB 200 億</li>
+        <li><b>技術</b>2.5D 規模化量產、大尺寸 FCBGA、記憶體垂直打線、車用 FCQFN</li>
+      </ul></div>
+    </div>
+    <p class="mean"><b>對日月光的意義：</b>華天往「功率元件＋自有品牌」走，跟日月光純封測代工的模式不同。在日月光主力的 AI 封裝幾乎沒有交集；重疊只在中國市場的記憶體與車用傳統封裝。</p>
+  </article>
+</section>
+
+<!-- ============ B. Foundry ============ -->
+<section>
+  <div class="stn group-h"><span class="code">B · FOUNDRY</span><h2>晶圓廠自做封裝：把「競合」拆成數字</h2></div>
+  <p class="lead">每家都拆成兩本帳：<strong>合作帳</strong>是這家公司讓日月光多賺的營收，<strong>競爭帳</strong>是它自己留下、或可能從日月光拿走的營收。公司有揭露的用原數字；沒揭露的用公司給的比例換算，或寫明假設後估算 [E]。</p>
+
+  <article class="duel" id="b-tsmc">
+    <div class="duel-hd"><h3>日月光<span class="vs">VS</span>台積電 TSMC</h3><span class="who">2330【台】· 3Q26 · 先進封測占營收 2025「略高於 10%」</span><span class="threat hi">威脅：高｜但合作＞競爭</span></div>
+    <p class="one">結論先講：<strong>從日月光自己的損益看，合作＞競爭</strong>。2026 年合作帶來約 US$3.7bn，2027 年目標約 US$7.4bn；可量化的未來威脅約 US$1.2–2.3bn [E]。<strong>但從整個 AI 封裝價值池看，台積電拿的遠比日月光多</strong>：2026 年台積電自己的先進封測營收約是日月光 LEAP 的 5.7 倍 [E]，不過這個倍數正從 2024 年的 12 倍逐年縮小。</p>
+
+    <div class="ledger">
+      <div class="box plus">
+        <h3><span>合作帳：讓日月光多賺的</span><span class="big">≈3.7bn</span></h3>
+        <table><thead><tr><th>合作項目</th><th class="r">2026 營收</th><th>依據</th></tr></thead><tbody>
+          <tr><td>CoWoS 的 oS（上載板）後段＋晶圓測試 CP 外包</td><td class="r">≈3.4 [E]</td><td>LEAP 扣掉 full process；台積電 2025 年起把 oS 與 CP 外包</td></tr>
+          <tr><td>CoW 段釋出（CoWoS-S/R 舊世代、full process）</td><td class="r">≈0.3</td><td>日月光財務長：2026 約 US$300m，2027「大幅成長」</td></tr>
+          <tr class="me"><td><strong>合計＝LEAP</strong></td><td class="r"><strong>≈3.7</strong></td><td>&gt;3.5bn 再多「幾億」；約占 ATM 22% [E]</td></tr>
+          <tr><td>2027 目標</td><td class="r">≈7.4</td><td>公司：2027 LEAP 翻倍</td></tr>
+        </tbody></table>
+        <p class="note">日月光絕大多數一般封測客戶的晶片也在台積電投片，屬於生態系共生，但不是跟台積電直接交易，所以不算進合作帳。</p>
+      </div>
+      <div class="box minus">
+        <h3><span>競爭帳：台積電自己留下的</span><span class="big">≈21bn</span></h3>
+        <table><thead><tr><th>競爭項目</th><th class="r">金額</th><th>依據</th></tr></thead><tbody>
+          <tr><td>台積電先進封測營收（CoW、SoIC、InFO／WMCM、自做的 oS 與測試）</td><td class="r">2025 ≥12.2<br>2026 ≈21.2 [E]</td><td>公司：2025「略高於 10%」、2026「low-teens %」，乘上營收（2026 年增約 44%）</td></tr>
+          <tr><td>產能：CoWoS 類月產能，台積電握有</td><td class="r">約 3/4</td><td>2026 年底台積電 12.5–14 萬片 vs OSAT 陣營約 4 萬片（法人）</td></tr>
+          <tr><td>InFO → WMCM（蘋果處理器封裝）</td><td class="r">未揭露</td><td>2016 年起由台積電做，原本是 OSAT 的 PoP 業務；A20 改 WMCM（法人）</td></tr>
+          <tr><td>美國在地封裝外包給 Amkor</td><td class="r">2028 後</td><td>台積電與 Amkor 10 年協議（亞利桑那，含 CoWoS）</td></tr>
+        </tbody></table>
+        <p class="note">競爭帳裡有一部分是 OSAT 本來就做不到的（CoW、SoIC 需要先進晶圓製程）。真正「OSAT 做得到卻被留在台積電」的金額公司沒有拆分，所以這本帳衡量的是價值池分配，不全是被搶走的營收。</p>
+      </div>
+    </div>
+
+    <div class="fig" id="fig-pool">
+      <h4>AI 先進封測價值池：台積電自留 vs 日月光 LEAP（US$bn）</h4>
+      <p class="cap">台積電自留的仍然大很多，但倍數從 12 倍降到約 4 倍 [E]，日月光分到的份額在變大。每組上方是「台積電：日月光」的比值；2026E／2027E 為估算（淺色）。</p>
+      <div class="legend"><span><i style="background:var(--s2)"></i>台積電先進封測營收</span><span><i style="background:var(--s1)"></i>日月光 LEAP</span></div>
+      <svg id="svg-pool" viewBox="0 0 760 320" role="img" aria-label="2024 到 2027 年台積電先進封測營收與日月光 LEAP 營收對照長條圖"></svg>
+      <details class="tv"><summary>看數據表與假設</summary>
+        <div class="tbl"><table style="min-width:560px"><thead><tr><th>年度</th><th class="r">台積電先進封測</th><th class="r">日月光 LEAP</th><th class="r">台積電：日月光</th><th class="r">日月光占兩者合計</th><th>依據</th></tr></thead><tbody id="tb-pool"></tbody></table></div>
+      </details>
+    </div>
+
+    <div class="scale-meter" id="cap-share">
+      <h4 style="margin:0 0 2px;font-size:15px">CoWoS 類月產能分配（千片／月，取區間中值）</h4>
+      <p class="cap" style="font-size:13px;color:var(--ink-3);margin:0 0 6px">OSAT 陣營（日月光、矽品、Amkor）約占四分之一，而且 2027 年比重大致不變：外溢在變大，但沒有變快。</p>
+      <div class="row"><div class="lab">2026 年底</div><div class="track"><span style="width:76.5%;background:var(--s2)">台積電 125–140</span><span style="width:23.5%;background:var(--s1)">OSAT 40</span></div></div>
+      <div class="row"><div class="lab">2027 年底</div><div class="track"><span style="width:75.5%;background:var(--s2)">台積電 170–220</span><span style="width:24.5%;background:var(--s1)">OSAT 65</span></div></div>
+      <p class="note">台積電：Digitimes（2025/12）、法人與設備業者估計 2026 年底 12.5–14 萬片、2027 年底 17–22 萬片；OSAT：法人估 2026 年底約 4 萬片、2027 年底約 6.5 萬片。都是業界估計，不是公司揭露。</p>
+    </div>
+
+    <div class="fig" id="fig-risk">
+      <h4>未來威脅有多大：2027 年 LEAP 目標 US$7.4bn 可能被拿走多少 [E]</h4>
+      <p class="cap">每個威脅都對應台積電正在做的事。深色＝低情境、淺色延伸＝高情境。全部發生後 LEAP 仍有 US$5.1–6.2bn，合作帳還是大於競爭帳。</p>
+      <svg id="svg-risk" viewBox="0 0 760 300" role="img" aria-label="2027 年日月光 LEAP 目標的威脅瀑布圖"></svg>
+      <details class="tv"><summary>看每個威脅的假設</summary>
+        <div class="tbl"><table style="min-width:620px"><thead><tr><th>威脅</th><th>台積電在做的事</th><th>假設 [E]</th><th class="r">影響（US$bn）</th></tr></thead><tbody>
+          <tr><td>① oS／測試部分收回自做</td><td>台灣 13 座先進製程與封裝廠在建；CoWoS 往 9 倍、14 倍光罩尺寸走，新世代 CoWoS-L、SoIC 留在自己手上</td><td>2027 LEAP 扣掉 full process 約 US$6.4bn，其中 10–20% 被收回</td><td class="r">−0.6 ～ −1.3</td></tr>
+          <tr><td>② CoW 中介層改找別人</td><td>2026/10 找 GlobalFoundries 供應矽中介層，「後段有點短缺」</td><td>2027 full process 約 US$1.0bn（2026 的 3 倍），20–40% 被分流</td><td class="r">−0.2 ～ −0.4</td></tr>
+          <tr><td>③ ASIC 改走 Intel EMIB-T</td><td>台積電承認對手方案「很有競爭力」；Intel 說封裝單「每年數十億美元」</td><td>US$2–3bn 的 2.5D 需求離開 CoWoS 生態系 × 日月光在生態系的份額約 19%</td><td class="r">−0.4 ～ −0.6</td></tr>
+          <tr class="me"><td colspan="3"><strong>合計（2027–28 年）</strong></td><td class="r"><strong>−1.2 ～ −2.3</strong>（目標的 16–31%）</td></tr>
+        </tbody></table></div>
+        <p class="note">面板級 CoPoS（台積電，媒體報導 2028–29 放量）對上日月光自己的 310×310mm 面板級封裝（2027 年 1Q 量產），兩邊會正面對打。但 2028 年後的金額太不確定，這裡沒有量化。</p>
+      </details>
+    </div>
+
+    <div class="two">
+      <div class="box plus"><h3 style="font-size:15.5px">合作會繼續擴大的證據（逐字稿）</h3><ul>
+        <li>台積電董事長（3Q26）：後段「確實有點短缺」，要跟夥伴一起支援客戶。</li>
+        <li>日月光（2Q26）：與晶圓廠合作涵蓋 oS、full process「全光譜」；只有「只有晶圓廠拿得到先進晶圓」或客戶 IP 限制的部分會留在晶圓廠。</li>
+        <li>台積電 2026 年營收預估年增約 44%；先進封測成長比公司平均快。整塊價值池在長大，日月光分到的絕對金額跟著變大。</li>
+      </ul></div>
+      <div class="box minus"><h3 style="font-size:15.5px">競爭在加劇的證據</h3><ul>
+        <li>台積電董事長：全世界只有台積電量產 5 倍光罩尺寸的 CoWoS，正做 9 倍、14 倍。最先進的世代都先留在自己手上。</li>
+        <li>夥伴不只日月光：中介層找 GlobalFoundries，美國封測找 Amkor（10 年協議）。</li>
+        <li>OSAT 產能占比停在四分之一左右，外溢的比例沒有提高。</li>
+      </ul></div>
+    </div>
+    <p class="mean"><b>判決：</b>對日月光的營收，合作明顯大於競爭：2026 年合作約 US$3.7bn，未來可量化的威脅最多約 US$2.3bn，而且分散在 2027–28 年。對產業價值的分配，台積電仍拿走約 85%（2026E）。日月光的角色是「分到的份額逐年變大的第二供應鏈」，不是平起平坐的對手。Pitch 時可以講「LEAP 與台積電先進封測的比值」：從 1:12 走到約 1:4 [E]，這是日月光競合地位改善的量化證據。</p>
+  </article>
+
+  <article class="duel" id="b-intel">
+    <div class="duel-hd"><h3>日月光<span class="vs">VS</span>Intel Foundry</h3><span class="who">INTC【美】· EMIB-T／Foveros · 2Q26（3Q26 尚未公布）</span><span class="threat mid">威脅：中（長期）</span></div>
+    <p class="one">Intel 對日月光是「潛在競爭為主、合作還沒發生」。EMIB-T 用嵌在基板裡的矽橋取代大片矽中介層，目標是搶 CoWoS 的客製 ASIC。它若成功，先受傷的是台積電，日月光是間接被波及。</p>
+    <div class="ledger">
+      <div class="box plus"><h3><span>合作帳</span><span class="big">≈0</span></h3><ul>
+        <li>目前沒有揭露的合作營收。</li>
+        <li>日月光 COO（2Q26）：如果 EMIB-T 成為替代方案，「就買 EMIB-T 基板來做組裝」，不是零和。這是選擇權，還不是營收。</li>
+        <li>Intel 第一次把 EMIB 外包，選的是 Amkor 韓國松島 K5（媒體），不是日月光。</li>
+      </ul></div>
+      <div class="box minus"><h3><span>競爭帳</span><span class="big">−0.4～0.6bn</span></h3><ul>
+        <li>Intel 財務長（1Q26）：正在談的封裝案「每年數十億美元等級」。</li>
+        <li>媒體報導 Google（TPU，2027）、Meta（MTIA）、Amazon 在評估 EMIB；公司未證實。</li>
+        <li>估算 [E]：US$2–3bn 需求離開 CoWoS 生態系 × 日月光份額約 19% ≈ 2028 年 US$0.4–0.6bn。</li>
+      </ul></div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>面向</th><th>日月光</th><th>Intel Foundry</th></tr></thead>
+      <tbody>
+        <tr><td>規模與獲利</td><td>ATM 2Q26 營收約 US$4.0bn [E]、毛利率 27.3%</td><td>2Q26 營收 US$5.77bn（多為內部）、營業虧損 US$2.09bn</td></tr>
+        <tr><td>擴產</td><td>2026 capex US$10.5bn</td><td>2026 capex 增加約 US$3bn，部分投入封裝；馬來西亞檳城先進封裝廠將啟用第一期（媒體）</td></tr>
+        <tr><td>時程</td><td>LEAP 2027 翻倍</td><td>EMIB 訂單持續增加，支援客戶 2027 年量產</td></tr>
+      </tbody>
+    </table></div>
+    <p class="mean"><b>判決：</b>現在兩本帳都很小。長期是競爭略大於合作，因為 Intel 選的外包夥伴是 Amkor。要盯的訊號：2027 年 Intel 有沒有公布具名的外部客戶量產，以及日月光有沒有拿到 EMIB-T 組裝單。</p>
+  </article>
+
+  <article class="duel" id="b-samsung">
+    <div class="duel-hd"><h3>日月光<span class="vs">VS</span>三星 Samsung</h3><span class="who">005930【韓】· 記憶體＋晶圓＋封裝 · 3Q26 初估（完整財報 10 月底）</span><span class="threat lo">威脅：低</span></div>
+    <p class="one">三星的打法是「HBM＋晶圓代工＋封裝一站式」，拿記憶體去綁客製 ASIC 的訂單。但三星晶圓代工規模小、還在虧損，對日月光的直接影響有限。它反而在把一般記憶體模組外包出去。</p>
+    <div class="ledger">
+      <div class="box plus"><h3><span>合作帳</span><span class="big">小</span></h3><ul>
+        <li>三星把天安產能轉給 HBM 封裝，「多數新增的 DDR5 模組、SSD 外包」，並要求 OSAT 夥伴提前擴產（TrendForce 9/16 轉述 The Elec）。夥伴名單未揭露，以韓國在地廠為主，日月光受惠程度無法確認。</li>
+      </ul></div>
+      <div class="box minus"><h3><span>競爭帳</span><span class="big">小</span></h3><ul>
+        <li>HBM 封裝完全自建：天安 HBM 設施投資 KRW 10 兆（Yonhap 轉述），TCB 月產能目標 23.1 萬、混合鍵合 1.95 萬（2026 年底，媒體）。</li>
+        <li>一站式客製 ASIC（媒體：與 Broadcom 合作）。若有 ASIC 從台積電生態系轉到三星，日月光會少掉那部分的 oS 與測試，目前沒有可量化的規模。</li>
+      </ul></div>
+    </div>
+    <p class="mean"><b>判決：</b>兩本帳都小，偏中性。三星 3Q26 完整財報與法說（10 月底）會更新晶圓代工與先進封裝（AVP）的細節。</p>
+  </article>
+</section>
+
+<!-- ============ C. EMS ============ -->
+<section>
+  <div class="stn group-h"><span class="code">C · EMS</span><h2>EMS：環旭跟三家對手怎麼比</h2></div>
+  <p class="lead">環旭（601231）是日月光持股約 74.7% 的子公司，占日月光合併營收約三分之一，是拉低合併毛利率的主因。先看環旭的產品線各撞上哪個對手：</p>
+  <div class="fig" id="fig-usi">
+    <h4>環旭 1H26 各產品線：營收（RMB 億）與毛利率</h4>
+    <p class="cap">高毛利的「雲端及存儲」（AI 加速卡、伺服器板卡）年增 49%，正面對上 Jabil、鴻海；最大的消費電子（穿戴 SiP）對上立訊。</p>
+    <div class="seg" id="seg-usi"></div>
+    <p class="note">來源：環旭 2026 年半年度報告主營業務分產品表；毛利率＝（收入−成本）÷收入，本頁計算。</p>
+  </div>
+  <p>最新一季：環旭 3Q26 營收 RMB 195.4 億，年增 19%、季增 40%（9 月營收簡報）。日月光 2Q26 法說已預告 EMS 3Q 營收季增約 40%，主要來自 AI 加速器相關產品。</p>
+
+  <article class="duel" id="c-jabil">
+    <div class="duel-hd"><h3>環旭<span class="vs">VS</span>Jabil</h3><span class="who">JBL【美】· FY26（截至 2026/8）</span><span class="threat mid">威脅：中</span></div>
+    <p class="one">Jabil 是 EMS 轉型 AI 基礎設施最成功的例子：FY26 AI 相關營收 US$14.4bn，FY27 預估 US$22.1bn。環旭想走同一條路（AI 板卡、光通訊、伺服器電源），但現在的雲端營收規模大約只有 Jabil AI 營收的十分之一。</p>
+    <div class="bars" data-duel='[
+      {"m":"全年營收","u":"US$bn","a":8.25,"r":35.95,"w":"r","n":"環旭 2025 RMB 592 億÷7.18 [E]／Jabil FY26"},
+      {"m":"AI／雲端相關營收","u":"US$bn，年化","a":1.21,"r":14.4,"w":"r","n":"環旭 1H26 雲端及存儲×2 [E]"},
+      {"m":"最新營收年增","u":"%","a":19,"r":29,"w":"r","n":"環旭 3Q26／Jabil FY26 Q4"},
+      {"m":"營業利益率","u":"%","a":3.4,"r":6.4,"w":"r","n":"環旭 1H26／Jabil Q4 core"}
+    ]' data-rival="Jabil" data-me="環旭"></div>
+    <div class="tbl"><table>
+      <thead><tr><th>面向</th><th>環旭</th><th>Jabil</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>AI 資料中心</td><td>AI 智能卡、伺服器主板；400G/800G/1.6T 單模矽光引擎、ELSFP、D-FAU；HVDC 實驗室、新一代 PDU</td><td>第二家 hyperscaler 在墨西哥放量，FY27 將成 10% 以上客戶；第三家 hyperscaler 已拿下；矽光收發器＋CPO（2023 年買下 Intel 矽光收發器業務）</td><td class="verdict-cell r">Jabil</td></tr>
+        <tr><td>電源與散熱</td><td>伺服器供電研發中</td><td>收購 Hanley Energy（模組化電源、部署服務）；液冷機櫃</td><td class="verdict-cell r">Jabil</td></tr>
+        <tr><td>資本效率</td><td>—</td><td>淨 capex 只占營收 1.3%；core ROIC 59%</td><td class="verdict-cell r">Jabil</td></tr>
+        <tr><td>獨特優勢</td><td>母公司日月光的先進封裝與 CPO，可做「晶片到模組」垂直整合；SiP 微小化</td><td>規模、北美客戶關係</td><td class="verdict-cell a">環旭（垂直整合）</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="box"><h3 style="font-size:15.5px">Jabil 在做的事（FY26 Q4 逐字稿）</h3><ul class="tl">
+        <li><b>FY27</b>營收 US$44.5bn（+24%）；Intelligent Infrastructure US$25.6bn（+43%）；core 營益率 6.1%（+30bp）</li>
+        <li><b>產能</b>再加約 400 萬平方英尺：美國 Mississippi、Virginia，海外印度、墨西哥、巴西、越南</li>
+        <li><b>技術</b>CPO 與 co-packaged copper「開始放量時」已就位；FY27 小量貢獻、之後更大</li>
+      </ul></div>
+      <div class="box"><h3 style="font-size:15.5px">環旭在做的事（1H26 半年報）</h3><ul class="tl">
+        <li><b>雲端</b>持續擴充 AI 伺服器板卡產能，AI 智能卡快速成長</li>
+        <li><b>光通訊</b>加快光互聯產品產能布局與量產導入，推進 ELSFP、D-FAU</li>
+        <li><b>供電</b>與日月光協同推進 HVDC 實驗室與新一代 PDU</li>
+        <li><b>據點</b>11 國 27 個生產據點；墨西哥瓜達拉哈拉二廠、波蘭二棟廠房 2024 年投產</li>
+      </ul></div>
+    </div>
+    <p class="mean"><b>對日月光的意義：</b>環旭雲端業務毛利率 14.1%，比消費、通訊高一倍。它能不能長成「小 Jabil」，決定 EMS 會不會從拖累日月光合併毛利率，變成第二個成長引擎。要盯的是雲端及存儲占環旭營收的比重（1H26 約 16%）。</p>
+  </article>
+
+  <article class="duel" id="c-honhai">
+    <div class="duel-hd"><h3>環旭<span class="vs">VS</span>鴻海 Hon Hai</h3><span class="who">2317【台】· 2Q26</span><span class="threat lo">威脅：低～中</span></div>
+    <p class="one">量級完全不同：鴻海 2Q26 單季營收約 NT$2.51 兆，約是環旭同季的 40 倍 [E]。鴻海做的是整櫃 AI 伺服器（全球市占四成以上，法人估），環旭做的是板卡、模組、光引擎這類零組件級產品，正面衝突比想像中小，甚至可能是上下游。</p>
+    <div class="bars" data-duel='[
+      {"m":"2Q26 單季營收","u":"US$bn","a":1.95,"r":79.4,"w":"r","n":"環旭 RMB 139.9 億÷7.18、鴻海÷31.6 [E]"},
+      {"m":"最新營收年增","u":"%","a":19,"r":39.8,"w":"r","n":"環旭 3Q26／鴻海 2Q26"},
+      {"m":"雲端／AI 占營收","u":"%","a":16,"r":51,"w":"r","n":"環旭 1H26／鴻海 2Q26 雲端網路"},
+      {"m":"營業利益率","u":"%","a":3.4,"r":3.75,"w":"t","n":"環旭 1H26／鴻海 2Q26"}
+    ]' data-rival="鴻海" data-me="環旭"></div>
+    <div class="two">
+      <div class="box"><h3 style="font-size:15.5px">鴻海在做的事（8/12 法說）</h3><ul class="tl">
+        <li><b>2026</b>AI 機櫃出貨倍數成長；800G 以上交換器倍增；CPO 交換器 3Q 量產出貨</li>
+        <li><b>capex</b>2026 年增 30% 以上（2025 年 NT$1,738 億），投向 AI 機櫃、液冷、測試</li>
+        <li><b>據點</b>美國德州、威斯康辛、俄亥俄、加州；墨西哥契瓦瓦 2026/5 再增資 US$1.29 億</li>
+      </ul></div>
+      <div class="box"><h3 style="font-size:15.5px">兩家的交集與差異</h3><ul>
+        <li>交集：AI 伺服器板卡、光通訊（CPO）、伺服器電源。鴻海也往這些零組件垂直整合。</li>
+        <li>差異：鴻海營益率 3.75% 是靠整櫃規模；環旭 3.4% 但有 SiP 微小化與日月光封裝技術。</li>
+        <li>美國在地：鴻海在美國多州有 AI 伺服器產線；環旭北美只有墨西哥廠。</li>
+      </ul></div>
+    </div>
+    <p class="mean"><b>對日月光的意義：</b>環旭不會在整櫃組裝跟鴻海正面對打，比較可能的是賣光引擎、電源模組給整櫃廠。風險是鴻海自己做零組件（CPO 交換器已量產），可能壓縮環旭的空間。</p>
+  </article>
+
+  <article class="duel" id="c-lux">
+    <div class="duel-hd"><h3>環旭<span class="vs">VS</span>立訊精密 Luxshare</h3><span class="who">002475【中】· 1H26（3Q26 於 10/29 公布）</span><span class="threat hi">威脅：高（消費電子）</span></div>
+    <p class="one">在環旭最大的產品線（消費電子＋通訊，1H26 占營收 60%）上，立訊是最直接的對手：兩家都是蘋果穿戴供應鏈。立訊 2021 年起就被報導做 AirPods 的 SiP 封裝，而且立訊的規模、毛利率、成長率都比環旭高。</p>
+    <div class="bars" data-duel='[
+      {"m":"1H26 營收","u":"US$bn","a":3.81,"r":24.3,"w":"r","n":"RMB÷7.18 [E]"},
+      {"m":"1H26 營收年增","u":"%","a":0.5,"r":40.2,"w":"r"},
+      {"m":"1H26 毛利率","u":"%","a":8.8,"r":11.8,"w":"r"},
+      {"m":"資料中心／雲端營收 1H26","u":"US$bn","a":0.61,"r":2.31,"w":"r","n":"環旭雲端及存儲／立訊通訊及資料中心"},
+      {"m":"該業務毛利率","u":"%","a":14.1,"r":17.3,"w":"r"}
+    ]' data-rival="立訊" data-me="環旭"></div>
+    <div class="tbl"><table>
+      <thead><tr><th>面向</th><th>環旭</th><th>立訊</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>消費電子</td><td>RMB 87.3 億、毛利率 6.8%；智慧手錶、TWS、AI 眼鏡 SiP</td><td>RMB 1,224.8 億（+19%）、毛利率 10.3%；蘋果主要組裝廠</td><td class="verdict-cell r">立訊</td></tr>
+        <tr><td>SiP 技術</td><td>2013 年起做穿戴 SiP；微小化研發中心（MCC）、SiP 雙引擎平台；可做到 Wafer-In-Module-Out</td><td>以組裝為主、往上游延伸（媒體 2021：AirPods SiP）</td><td class="verdict-cell a">環旭（有日月光封裝技術）</td></tr>
+        <tr><td>資料中心</td><td>雲端及存儲 +49%</td><td>通訊及資料中心 RMB 166.1 億（+50%）；800G 光模組量產</td><td class="verdict-cell r">立訊</td></tr>
+        <tr><td>汽車</td><td>RMB 17.4 億（−35%）</td><td>RMB 323.9 億（+274%，含併購）</td><td class="verdict-cell r">立訊</td></tr>
+        <tr><td>研發投入</td><td>—</td><td>1H26 RMB 65.7 億（+43%）</td><td class="verdict-cell r">立訊</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="box"><h3 style="font-size:15.5px">立訊在做的事</h3><ul class="tl">
+        <li><b>2026/07</b>香港上市，募資約 HK$240 億（年內港股最大 IPO）</li>
+        <li><b>光通訊</b>800G 光模組上半年量產，2027/6 前擴到約 10 條產線（研報）</li>
+        <li><b>連接</b>224G、448G 高速銅連接；CPC 相關產品 2027 下半年商用（研報）</li>
+        <li><b>AI 機櫃</b>NVIDIA 機櫃線纜與連接器、承接整機組裝；電氣互聯、光互聯、熱管理、電源四大領域</li>
+      </ul></div>
+      <div class="box"><h3 style="font-size:15.5px">環旭的應對</h3><ul>
+        <li>押 AI 眼鏡等新穿戴：AI 眼鏡 WiFi 模組持續量產、主板 SiP 開始出貨並逐步放量。</li>
+        <li>把資源轉往資料中心（毛利率是消費電子的兩倍），降低對蘋果穿戴的依賴。</li>
+        <li>通訊類 1H26 −13.8%，公司說是 WiFi 模組降價與市場競爭。這是被擠壓的直接證據。</li>
+      </ul></div>
+    </div>
+    <p class="mean"><b>對日月光的意義：</b>在消費電子，環旭守的是「SiP 技術門檻」，立訊攻的是「規模＋組裝一條龍」。環旭上半年營收只成長 0.5%、通訊類衰退，顯示這場目前是立訊佔上風。立訊 3Q26 於 10/29 公布，環旭 3Q26 季報 10/31 前公布。</p>
+  </article>
+</section>
+
+<section id="sources" class="sources">
+  <div class="stn"><span class="code">REF</span><h2>資料來源</h2></div>
+  <ol>
+    <li>日月光：2Q26 法說逐字稿（2026-07-30，使用者存檔）：LEAP 2026 &gt;US$3.5bn 再加「幾億」、2027 翻倍、full process 約 US$300m、與晶圓廠合作範圍、EMIB-T 回應、EMS 3Q 指引；ATM 損益與占比見主報告來源；<a href="https://www.trendforce.com/news/2026/07/31/news-ase-again-raises-2026-capex-to-record-us10-5b-eyes-2x-leading-edge-advanced-packaging-revenue-by-2027/">TrendForce 7/31（capex US$10.5bn）</a></li>
+    <li>台積電：<a href="https://investor.tsmc.com/english/quarterly-results/2026/q3">3Q26 法說逐字稿</a>（2026 營收年增約 44%、後段短缺與 GlobalFoundries、5 倍光罩 CoWoS、13 座台灣先進製程與封裝廠）；<a href="https://investor.tsmc.com/english/quarterly-results/2025/q4">4Q25 法說逐字稿</a>（先進封測占營收 2024 約 8%、2025 略高於 10%、2026 low-teens %）；CoW 釋出與 OSAT 產能：<a href="https://www.digitimes.com.tw/tech/dt/n/shwnws.asp?id=0000740960_KDX8SAFC729JCCLSXBAK1">Digitimes 2025/12/15</a>、<a href="https://abmedia.io/tsmc-cowos-monthly-capacity-200k-2027">鏈新聞（2027 月產能 20 萬片）</a>、<a href="https://wantrich.chinatimes.com/news/20261008900006-420101">旺得富 10/8（OSAT 4 萬→6.5 萬片）</a>；WMCM／InFO 廠區：<a href="https://technews.tw/?p=1480228">科技新報 2026/1</a>；台積電—Amkor 10 年協議：<a href="https://focustaiwan.tw/sci-tech/202606180014">中央社 Focus Taiwan 2026/6/18</a></li>
+    <li>Amkor：<a href="https://www.sec.gov/Archives/edgar/data/0001047127/000104712726000049/amkr9302026erex-991.htm">3Q26 8-K</a>（終端市場占比、先進產品、毛利率、capex）、<a href="https://www.roic.ai/quote/AMKR/transcripts/2026-year/3-quarter">3Q26 逐字稿</a>（亞利桑那、韓國、預付款、運算展望）、<a href="https://secure.businesswire.com/news/home/20260723873230/en/Amkor-Technology-Announces-Strategic-Partnership-with-NVIDIA-to-Expand-Advanced-Packaging-and-Test-for-Next-Generation-AI-Infrastructure">NVIDIA 合作新聞稿 2026/7/23</a>；Intel EMIB 外包：<a href="https://www.trendforce.com/news/2025/12/01/news-intel-reportedly-taps-amkors-songdo-facility-for-emib-packaging-in-first-ever-outsourcing-move/">TrendForce 2025/12/1</a></li>
+    <li>長電：<a href="http://static.cninfo.com.cn/finalpage/2026-10-23/1225617213.PDF">2026 年第三季度報告</a>、<a href="http://static.cninfo.com.cn/finalpage/2026-09-04/1225547414.PDF">2026 年度定增募資可行性分析報告</a>、<a href="http://static.cninfo.com.cn/finalpage/2026-10-23/1225617242.PDF">定增獲國資委批覆公告</a>、<a href="http://static.cninfo.com.cn/finalpage/2026-04-10/1225091498.PDF">2025 年年度報告</a>；投資計畫與臨港：<a href="https://stock.10jqka.com.cn/20261023/c681000347.shtml">同花順 10/23</a></li>
+    <li>通富：<a href="http://static.cninfo.com.cn/finalpage/2026-08-29/1225527099.PDF">2026 年半年度報告</a>、<a href="http://static.cninfo.com.cn/finalpage/2026-09-12/1225560523.PDF">定增上市公告書（RMB 42.2 億）</a>、<a href="http://static.cninfo.com.cn/finalpage/2026-04-17/1225112762.PDF">2025 年年度報告</a>；募投方向：<a href="https://finance.eastmoney.com/a/202608193845944010.html">東方財富 8/19</a>；2026 投資計畫與檳城投產：<a href="https://pdf.dfcfw.com/pdf/H3_AP202604241821525918_1.pdf">券商研報摘要</a></li>
+    <li>華天：<a href="http://static.cninfo.com.cn/finalpage/2026-08-22/1225488275.PDF">2026 年半年度報告</a>、<a href="http://static.cninfo.com.cn/finalpage/2026-10-20/1225610432.PDF">收購華羿微電過戶完成公告（10/20）</a>、<a href="http://static.cninfo.com.cn/finalpage/2026-03-31/1225059982.PDF">2025 年年度報告</a>；擴產與營收目標：<a href="https://pdf.dfcfw.com/pdf/H3_AP202604291821755843_1.pdf">券商研報 2026/4</a></li>
+    <li>Intel：<a href="https://www.sec.gov/Archives/edgar/data/50863/000005086326000155/q226earningsrelease.htm">2Q26 財報</a>、<a href="https://www.roic.ai/quote/INTC/transcripts/2026-year/1-quarter">1Q26 逐字稿</a>（封裝案每年數十億美元）；客戶傳聞：<a href="https://www.tomshardware.com/tech-industry/semiconductors/intel-reportedly-in-talks-with-google-and-amazon-over-advanced-packaging">Tom's Hardware</a></li>
+    <li>三星：<a href="https://news.samsung.com/global/samsung-electronics-announces-earnings-guidance-for-third-quarter-2026">3Q26 初估</a>；<a href="https://trendforce.com/news/2026/09/16/news-samsung-reportedly-shifts-cheonan-capacity-to-hbm-packaging-outsource-conventional-memory-modules">TrendForce 9/16（天安轉 HBM、模組外包）</a>；<a href="https://www.trendforce.com/news/2026/09/30/news-samsung-foundry-loss-reportedly-seen-shrinking-42-yoy-in-2026-as-hbm4-base-die-4nm-demand-rises/">TrendForce 9/30（Broadcom）</a></li>
+    <li>環旭：<a href="http://static.cninfo.com.cn/finalpage/2026-08-27/1225514791.PDF">2026 年半年度報告</a>（分產品收入與成本、經營討論）、<a href="http://static.cninfo.com.cn/finalpage/2026-10-10/1225598530.PDF">2026 年 9 月營業收入簡報</a>、<a href="http://static.cninfo.com.cn/finalpage/2026-04-04/1225080387.PDF">2025 年年度報告摘要</a></li>
+    <li>Jabil：<a href="https://www.sec.gov/Archives/edgar/data/0000898293/000162828026063890/jbl-20260930ex991.htm">FY26 Q4 8-K</a>、<a href="https://www.roic.ai/quote/JBL/transcripts/2026-year/4-quarter">FY26 Q4 逐字稿</a>（AI 營收、FY27 展望、400 萬平方英尺、淨 capex、ROIC、Hanley、CPO）</li>
+    <li>鴻海：2Q26 法說（8/12）：<a href="https://www.inside.com.tw/article/42074-foxconn-q2-2026-ai-server-revenue-passes-half">INSIDE</a>、<a href="https://uanalyze.com.tw/articles/3375252004">優分析（營收）</a>、<a href="https://uanalyze.com.tw/articles/7326553299">優分析（capex 與據點）</a>、<a href="https://www.digitimes.com.tw/tech/dt/n/shwnws.asp?id=764955">Digitimes（營益率 3.75%）</a></li>
+    <li>立訊：2026 年半年報數據：<a href="https://static.weeklyonstock.com/26/0824/ABB2621242010142.html">證券市場週刊快報</a>、<a href="https://m.gelonghui.com/news/5306700">光大證券研報摘要</a>、<a href="https://stock.10jqka.com.cn/20260825/c679239254.shtml">同花順</a>；<a href="http://static.cninfo.com.cn/finalpage/2026-10-17/1225609015.PDF">3Q26 董事會日期公告</a>；港股 IPO：<a href="https://news.pedaily.cn/20260424/128446.shtml">投資界</a>；SiP：<a href="https://technews.tw/?p=877127">科技新報 2021</a></li>
+    <li>匯率 [E]：USD/RMB 7.18（2025 年均）、USD/TWD 31.6（2Q26）。</li>
+  </ol>
+  <p class="disc">本頁為課堂研究用途，整理公開資料並加入研究判斷，非投資建議。法說內容以逐字稿為準；陸廠以交易所公告原文為準。</p>
+</section>
+</div>
+
+<script>
+(function(){
+  const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const NS='http://www.w3.org/2000/svg';
+  const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+  function tipFor(fig){let t=fig.querySelector('.tip');if(!t){t=document.createElement('div');t.className='tip';t.hidden=true;fig.appendChild(t)}return t}
+  function showTip(fig,html,evt){const t=tipFor(fig);t.innerHTML=html;t.hidden=false;const r=fig.getBoundingClientRect();let x=evt.clientX-r.left+12,y=evt.clientY-r.top-34;if(x+t.offsetWidth>r.width-8)x=evt.clientX-r.left-t.offsetWidth-12;t.style.left=Math.max(4,x)+'px';t.style.top=Math.max(4,y)+'px'}
+  function hideTip(fig){const t=fig.querySelector('.tip');if(t)t.hidden=true}
+  const fmt=v=>(Math.abs(v)>=100?v.toFixed(0):Math.abs(v)>=10?v.toFixed(1):v.toFixed(2)).replace(/\.?0+$/,'');
+
+  /* ---- duel bars (HTML) ---- */
+  document.querySelectorAll('.bars[data-duel]').forEach(box=>{
+    const rows=JSON.parse(box.dataset.duel), rv=box.dataset.rival, me=box.dataset.me||'日月光';
+    const wl={a:me+'優',r:rv+'優',t:'相近'};
+    box.innerHTML=rows.map(d=>{
+      const mx=Math.max(d.a,d.r);
+      const pa=Math.max(1.5,d.a/mx*100), pr=Math.max(1.5,d.r/mx*100);
+      return `<div class="brow"><div class="m">${d.m}<small>${d.u}${d.n?' · '+d.n:''}</small></div>
+        <div class="pair"><div class="b a"><i style="width:calc(${pa}% - 60px)"></i>${fmt(d.a)}</div><div class="b r"><i style="width:calc(${pr}% - 60px)"></i>${fmt(d.r)}</div></div>
+        <div class="w ${d.w}">${wl[d.w]}</div></div>`}).join('')+
+      `<div class="keyl"><span><i style="background:var(--s1)"></i>${me}</span><span><i style="background:var(--s2)"></i>${rv}</span></div>`;
+  });
+
+  /* ---- USI segments (HTML) ---- */
+  const usi=[
+    {n:'消費電子',rev:87.35,gm:6.8,rv:'立訊'},
+    {n:'通訊',rev:76.45,gm:6.3,rv:'立訊'},
+    {n:'雲端及存儲',rev:43.55,gm:14.1,rv:'Jabil、鴻海',hi:1},
+    {n:'工業',rev:40.99,gm:14.6,rv:'Jabil'},
+    {n:'汽車電子',rev:17.35,gm:2.5,rv:'Jabil'},
+    {n:'醫療',rev:2.47,gm:8.9,rv:'Jabil'}
+  ];
+  const mx=Math.max(...usi.map(d=>d.rev));
+  document.getElementById('seg-usi').innerHTML=usi.map(d=>`<div class="r"><div>${d.n}</div><div><div class="bar${d.gm<10?' lo':''}" style="width:${d.rev/mx*100}%"></div></div><div class="v">${d.rev.toFixed(1)} 億 · 毛利 ${d.gm}% · 對手 ${d.rv}</div></div>`).join('')+
+    '<div class="keyl"><span><i style="background:var(--s1)"></i>毛利率 ≥10%</span><span><i style="background:var(--muted-bar)"></i>毛利率 &lt;10%</span></div>';
+
+  /* ---- TSMC value pool ---- */
+  const pool=[
+    {y:'2024',t:7.2,a:0.6,e:0,s:'台積電營收 US$90.1bn × 約 8%；LEAP 公司揭露'},
+    {y:'2025',t:12.2,a:1.6,e:0,s:'US$122.42bn × 略高於 10%（下限）；LEAP 公司揭露'},
+    {y:'2026E',t:21.2,a:3.7,e:1,s:'營收年增約 44% → US$176bn × 12%（low-teens 取中）；LEAP &gt;3.5bn＋幾億'},
+    {y:'2027E',t:30.7,a:7.4,e:1,s:'假設先進封測再成長 45%（CoWoS 年底產能 +35～70%）；LEAP 公司目標翻倍'}
+  ];
+  function drawPool(){
+    const svg=document.getElementById('svg-pool');svg.innerHTML='';
+    const W=760,H=320,L=44,R=20,T=34,B=36,max=35;
+    const gw=(W-L-R)/pool.length, bw=Math.min(54,gw*0.3);
+    const y=v=>T+(H-T-B)*(1-v/max);
+    for(let g=0;g<=max;g+=5){el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:css('--line-2'),'stroke-width':1},svg);const t=el('text',{x:L-8,y:y(g)+4,'text-anchor':'end'},svg);t.textContent=g}
+    const fig=document.getElementById('fig-pool');
+    pool.forEach((d,i)=>{
+      const cx=L+gw*i+gw/2;
+      const bars=[{v:d.t,c:css('--s2'),x:cx-bw-3,n:'台積電先進封測'},{v:d.a,c:css('--s1'),x:cx+3,n:'日月光 LEAP'}];
+      bars.forEach(b=>{
+        const top=y(b.v),h=y(0)-top;
+        el('path',{d:`M${b.x},${y(0)} v${-(h-4)} a4,4 0 0 1 4,-4 h${bw-8} a4,4 0 0 1 4,4 v${h-4} z`,fill:b.c,'fill-opacity':d.e?0.5:1,stroke:d.e?b.c:'none','stroke-width':d.e?1.5:0,'stroke-dasharray':d.e?'4 3':''},svg);
+        const t=el('text',{x:b.x+bw/2,y:top-6,'text-anchor':'middle'},svg);t.textContent=(d.e?'≈':'')+b.v;
+      });
+      const lb=el('text',{x:cx,y:H-B+18,'text-anchor':'middle',class:'lbl'},svg);lb.textContent=d.y;
+      const rt=el('text',{x:cx,y:16,'text-anchor':'middle',style:'font-weight:500'},svg);rt.textContent=(d.t/d.a).toFixed(1)+' : 1';
+      const hit=el('rect',{x:cx-gw/2,y:T,width:gw,height:H-T-B,fill:'transparent'},svg);
+      hit.addEventListener('mousemove',e=>showTip(fig,`${d.y}<br>台積電先進封測 ${d.e?'≈':''}US$${d.t}bn<br>日月光 LEAP ${d.e?'≈':''}US$${d.a}bn<br>比值 ${(d.t/d.a).toFixed(1)} : 1 · 日月光占 ${(d.a/(d.a+d.t)*100).toFixed(0)}%`,e));
+      hit.addEventListener('mouseleave',()=>hideTip(fig));
+    });
+  }
+  document.getElementById('tb-pool').innerHTML=pool.map(d=>`<tr><td>${d.y}</td><td class="r">${d.e?'≈':''}${d.t}</td><td class="r">${d.e?'≈':''}${d.a}</td><td class="r">${(d.t/d.a).toFixed(1)} : 1</td><td class="r">${(d.a/(d.a+d.t)*100).toFixed(0)}%</td><td>${d.s}</td></tr>`).join('');
+
+  /* ---- risk waterfall ---- */
+  const steps=[{n:'2027 LEAP 目標',v:7.4,base:1},{n:'① oS／測試收回',lo:0.6,hi:1.3},{n:'② 中介層分流',lo:0.2,hi:0.4},{n:'③ 改走 EMIB-T',lo:0.4,hi:0.6},{n:'剩下的合作',end:1}];
+  function drawRisk(){
+    const svg=document.getElementById('svg-risk');svg.innerHTML='';
+    const W=760,H=300,L=40,R=16,T=20,B=40,max=8;
+    const n=steps.length,gw=(W-L-R)/n,bw=Math.min(78,gw*0.55);
+    const y=v=>T+(H-T-B)*(1-v/max);
+    for(let g=0;g<=max;g+=2){el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:css('--line-2'),'stroke-width':1},svg);const t=el('text',{x:L-8,y:y(g)+4,'text-anchor':'end'},svg);t.textContent=g}
+    let lo=7.4,hi=7.4;const fig=document.getElementById('fig-risk');
+    steps.forEach((s,i)=>{
+      const x=L+gw*i+(gw-bw)/2;let tip='';
+      if(s.base){el('rect',{x,y:y(s.v),width:bw,height:y(0)-y(s.v),fill:css('--s1'),rx:3},svg);const t=el('text',{x:x+bw/2,y:y(s.v)-6,'text-anchor':'middle'},svg);t.textContent='7.4';tip=`公司目標：2027 LEAP 翻倍 ≈ US$7.4bn`}
+      else if(s.end){
+        el('rect',{x,y:y(lo),width:bw,height:y(0)-y(lo),fill:css('--s1'),rx:3},svg);
+        el('rect',{x,y:y(hi),width:bw,height:y(lo)-y(hi),fill:css('--s1'),'fill-opacity':0.35,rx:2},svg);
+        const t=el('text',{x:x+bw/2,y:y(hi)-6,'text-anchor':'middle'},svg);t.textContent=lo.toFixed(1)+'–'+hi.toFixed(1);
+        tip=`全部威脅發生後：US$${lo.toFixed(1)}–${hi.toFixed(1)}bn`}
+      else{
+        const top=hi, nlo=lo-s.hi, nhi=hi-s.lo;
+        el('rect',{x,y:y(top),width:bw,height:y(top-s.lo)-y(top),fill:css('--bad'),rx:2},svg);
+        el('rect',{x,y:y(top-s.lo),width:bw,height:y(top-s.hi)-y(top-s.lo),fill:css('--bad'),'fill-opacity':0.35,rx:2},svg);
+        const t=el('text',{x:x+bw/2,y:y(top)-6,'text-anchor':'middle'},svg);t.textContent='−'+s.lo+'～'+s.hi;
+        tip=`${s.n}：−US$${s.lo}～${s.hi}bn [E]`;lo=nlo;hi=nhi;
+      }
+      const lb=el('text',{x:x+bw/2,y:H-B+18,'text-anchor':'middle',class:'lbl'},svg);lb.textContent=s.n;lb.setAttribute('style','font-size:12px');
+      const hit=el('rect',{x:L+gw*i,y:T,width:gw,height:H-T-B,fill:'transparent'},svg);
+      hit.addEventListener('mousemove',e=>showTip(fig,tip,e));hit.addEventListener('mouseleave',()=>hideTip(fig));
+    });
+  }
+
+  function drawAll(){drawPool();drawRisk()}
+  drawAll();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',drawAll);
+  new MutationObserver(drawAll).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+
+</body>
+</html>
