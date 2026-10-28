@@ -106,11 +106,20 @@ details.tv{margin-top:6px} details.tv summary{font-size:13px;color:var(--ink-3);
 .sources li{margin-bottom:4px;word-break:break-all}
 .disc{margin-top:26px;font-size:13px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px}
 a:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.pages{position:sticky;top:0;z-index:30;display:flex;gap:6px;overflow-x:auto;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0 9px;scrollbar-width:none}
+.pages::-webkit-scrollbar{display:none}
+.pages .lb{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);align-self:center;white-space:nowrap;margin-right:4px}
+.pages a{white-space:nowrap;font-size:13.5px;text-decoration:none;color:var(--ink-2);border:1px solid var(--line);background:var(--surface);padding:4px 12px;border-radius:6px}
+.pages a:hover,.pages a:focus-visible{border-color:var(--copper);color:var(--copper);outline:none}
+[id]{scroll-margin-top:64px}
+.pages a[aria-current="page"]{background:var(--copper);border-color:var(--copper);color:#fff;font-weight:700}
 </style>
 
 </head>
 <body>
 <div class="wrap">
+<nav class="pages" aria-label="3711 報告分頁"><span class="lb">3711 REPORT</span><a href="https://60401ben-art.github.io/ase-3711-peer-map/" aria-current="page">① 競品地圖</a><a href="https://60401ben-art.github.io/ase-3711-peer-map/h2h.html">② 十場一對一對決</a><a href="https://60401ben-art.github.io/ase-3711-peer-map/buyer.html">③ 如果我是客戶</a></nav>
+
 <header class="top">
   <div class="eyebrow">Competitive landscape · OSAT · 資料截至 2026-10-27</div>
   <h1><span class="tk">3711</span> 日月光投控：競品地圖</h1>
@@ -119,7 +128,6 @@ a:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
   <nav class="toc" aria-label="章節">
     <a href="#verdict">結論</a><a href="#vintage">資料時點</a><a href="#position">產業定位</a><a href="#peers">同業是誰</a><a href="#compare">優劣勢比較</a><a href="#capital">資本結構</a><a href="#future">未來發展</a><a href="#signposts">觀察指標</a><a href="#sources">來源</a>
   </nav>
-  <p style="font-size:13.5px;margin-top:12px">→ 每家對手的一對一深入比較（含台積電競合量化）：<a style="color:var(--copper)" href="https://60401ben-art.github.io/ase-3711-peer-map/h2h.html">3711 十場一對一對決</a>　·　客戶角度的產品差異化與護城河：<a style="color:var(--copper)" href="https://60401ben-art.github.io/ase-3711-peer-map/buyer.html">如果我是客戶</a></p>
 </header>
 
 <section id="verdict">
