@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="如果我是客戶：日月光、Amkor、長電的選商條件、產品差異化與護城河">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>3711 客戶選商分析</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 單欄閱讀流；從客戶角度：選商條件評分表 → 互動加權 → 兩場產品差異化 → 護城河 */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --ink:#14161c; --ink-2:#4a4f5c; --ink-3:#7a7f8c;
+  --line:#dde0e6; --line-2:#eceef2;
+  --copper:#b25a1f; --copper-soft:#f6e6da;   /* 打線銅線：本頁唯一強調色 */
+  --s1:#2a78d6; --s2:#eb6834; --muted-bar:#aab3c2; --ref-bar:#c9ced8;
+  --good:#1a7f4b; --bad:#c23b31; --good-bg:#e5f3ea; --bad-bg:#fae6e4;
+  --f-display:"IBM Plex Sans Condensed","Noto Sans TC",system-ui,sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111318; --surface:#181b22; --ink:#eceef3; --ink-2:#b4b9c6; --ink-3:#868c9a;
+  --line:#2c313c; --line-2:#22262f; --copper:#e08a4f; --copper-soft:#3a2617;
+  --s1:#3987e5; --s2:#d95926; --muted-bar:#5d6678; --ref-bar:#3b4250;
+  --good:#5cc48a; --bad:#ef7b70; --good-bg:#16301f; --bad-bg:#3a1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111318; --surface:#181b22; --ink:#eceef3; --ink-2:#b4b9c6; --ink-3:#868c9a;
+  --line:#2c313c; --line-2:#22262f; --copper:#e08a4f; --copper-soft:#3a2617;
+  --s1:#3987e5; --s2:#d95926; --muted-bar:#5d6678; --ref-bar:#3b4250;
+  --good:#5cc48a; --bad:#ef7b70; --good-bg:#16301f; --bad-bg:#3a1c1a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1080px;margin:0 auto}
+header.top{padding-block:40px 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.08em;color:var(--copper);text-transform:uppercase}
+h1{font-family:var(--f-body);font-weight:900;font-size:clamp(28px,4.4vw,42px);line-height:1.2;margin:8px 0 10px;text-wrap:balance}
+h1 .tk{font-family:var(--f-display);font-weight:700;color:var(--copper)}
+.sub{color:var(--ink-2);max-width:70ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;font-size:13px;color:var(--ink-3);font-family:var(--f-mono)}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+nav.toc a{font-size:13.5px;color:var(--ink-2);text-decoration:none;border:1px solid var(--line);padding:3px 10px;border-radius:999px;background:var(--surface)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--copper);color:var(--copper);outline:none}
+section{padding-block:40px 8px}
+.stn{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.stn .code{font-family:var(--f-mono);font-size:12px;color:var(--copper);border:1px solid var(--copper);padding:1px 7px;border-radius:3px;white-space:nowrap}
+h2{font-size:clamp(21px,2.6vw,26px);font-weight:900;line-height:1.35;margin:0;text-wrap:balance}
+h3{font-size:17px;font-weight:700;margin:26px 0 8px}
+p{margin:0 0 12px;max-width:72ch}
+.lead{color:var(--ink-2);margin-bottom:18px}
+.en{font-family:var(--f-display);font-weight:600;color:var(--ink-2);font-size:.92em}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.tw{color:var(--ink-3);font-size:.82em;font-family:var(--f-mono)}
+ol.verdict{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+ol.verdict li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 16px;display:grid;grid-template-columns:auto 1fr;gap:12px}
+ol.verdict b.k{font-family:var(--f-display);color:var(--copper);font-size:14px;white-space:nowrap;padding-top:2px}
+.tbl{overflow-x:auto;margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:680px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line-2);vertical-align:top;text-align:left}
+thead th{background:var(--line-2);font-weight:700;font-size:13px;color:var(--ink-2);white-space:nowrap}
+td.r,th.r{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+tr.me td{background:var(--copper-soft)}
+tr.me td:first-child{box-shadow:inset 3px 0 0 var(--copper)}
+tbody tr:last-child td{border-bottom:none}
+.note{font-size:13px;color:var(--ink-3);margin:6px 0 0;max-width:none}
+.src{font-size:12.5px;color:var(--ink-3)}
+.src a,.sources a{color:var(--ink-3)}
+.chip{display:inline-block;font-size:12px;padding:0 7px;border-radius:3px;font-weight:700;white-space:nowrap}
+.chip.g{background:var(--good-bg);color:var(--good)} .chip.b{background:var(--bad-bg);color:var(--bad)} .chip.n{background:var(--line-2);color:var(--ink-2)}
+/* value-chain map */
+.vc td.c{text-align:center;font-size:17px;line-height:1}
+.vc td.c small{display:block;font-size:11.5px;color:var(--ink-3);margin-top:4px;line-height:1.3}
+.dot-full{color:var(--copper)} .dot-half{color:var(--ink-2)} .dot-none{color:var(--line)}
+.grp td{background:var(--bg);font-size:12.5px;font-weight:700;color:var(--ink-3);letter-spacing:.04em;padding:6px 12px}
+/* charts */
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 18px 10px;margin:16px 0 8px;position:relative}
+.fig h4{margin:0 0 2px;font-size:15px}
+.fig .cap{font-size:13px;color:var(--ink-3);margin:0 0 10px}
+.fig svg{display:block;width:100%;height:auto;overflow:visible}
+.fig svg text{fill:var(--ink-2);font-family:var(--f-mono);font-size:12px}
+.fig svg .lbl{fill:var(--ink);font-family:var(--f-body);font-size:13px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin:4px 0 6px}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12.5px;padding:6px 9px;border-radius:4px;line-height:1.5;white-space:nowrap;z-index:5;font-family:var(--f-mono)}
+details.tv{margin-top:6px} details.tv summary{font-size:13px;color:var(--ink-3);cursor:pointer}
+/* peer cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
+.card h3{margin:0 0 2px;font-size:16.5px}
+.card .who{font-size:12.5px;color:var(--ink-3);font-family:var(--f-mono);margin-bottom:10px}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:0 0 10px;font-size:13.5px}
+.card dt{color:var(--ink-3)} .card dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.card ul{margin:0;padding-left:18px;font-size:13.8px} .card li{margin-bottom:3px}
+.card .tag{font-size:12px;font-weight:700;color:var(--ink-3);margin:8px 0 2px;letter-spacing:.04em}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
+.box h3{margin-top:0}
+.box.plus{border-top:3px solid var(--good)} .box.minus{border-top:3px solid var(--bad)}
+.box ul{margin:0;padding-left:18px} .box li{margin-bottom:8px}
+.rate{font-family:var(--f-mono);letter-spacing:1px;color:var(--copper)}
+.sources ol{font-size:12.8px;color:var(--ink-3);padding-left:22px;line-height:1.6}
+.sources li{margin-bottom:4px;word-break:break-all}
+.disc{margin-top:26px;font-size:13px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px}
+a:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+:root{--s3:#2f9e6e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--s3:#4cc08c}}
+:root[data-theme="dark"]{--s3:#4cc08c}
+.sc{display:inline-flex;gap:2px;vertical-align:-1px}
+.sc i{display:block;width:9px;height:9px;border-radius:2px;background:var(--line)}
+.sc i.on{background:var(--copper)}
+td .ev{display:block;font-size:12.5px;color:var(--ink-3);line-height:1.5;margin-top:3px}
+.picker{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.picker button{font:inherit;font-size:13.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:5px 12px;border-radius:999px;cursor:pointer}
+.picker button[aria-pressed="true"]{border-color:var(--copper);color:var(--copper);background:var(--copper-soft);font-weight:700}
+.picker button:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;margin:8px 0 14px}
+@media (max-width:700px){.wgrid{grid-template-columns:1fr}}
+.wrow{display:grid;grid-template-columns:132px 1fr 36px;gap:8px;align-items:center;font-size:13.5px}
+.wrow input{width:100%;accent-color:var(--copper)}
+.wrow output{font-family:var(--f-mono);font-size:12.5px;text-align:right;color:var(--ink-2)}
+.result{display:grid;gap:10px;margin-top:6px}
+.rrow{display:grid;grid-template-columns:90px 1fr 54px;gap:10px;align-items:center}
+.rrow .nm{font-weight:700;font-size:14px}
+.rrow .tr{height:22px;background:var(--line-2);border-radius:4px;overflow:hidden}
+.rrow .tr i{display:block;height:100%;border-radius:4px;transition:width .35s}
+.rrow .v{font-family:var(--f-mono);font-size:14px;text-align:right}
+.rrow.win .nm::after{content:" ← 首選";color:var(--copper);font-size:12px;font-weight:500}
+.why{font-size:14px;color:var(--ink-2);margin:10px 0 0;max-width:none}
+.persona-note{font-size:13px;color:var(--ink-3);margin:4px 0 0}
+.mean{border-left:3px solid var(--copper);background:var(--copper-soft);padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0 4px;font-size:14.5px}
+.mean b{color:var(--copper)}
+.group-h{margin-top:46px;padding-top:6px;border-top:2px solid var(--ink)}
+.fp{display:grid;gap:10px;margin:10px 0}
+.fp .row{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:center}
+.fp .lab{font-size:13.5px;font-weight:700}
+.fp .lab small{display:block;font-weight:400;color:var(--ink-3);font-family:var(--f-mono);font-size:11.5px}
+.fp .track{display:flex;height:28px;border-radius:4px;overflow:hidden;font-family:var(--f-mono);font-size:11.5px}
+.fp .track span{display:flex;align-items:center;justify-content:center;color:#fff;white-space:nowrap;overflow:hidden;border-right:1px solid var(--surface)}
+@media (max-width:620px){.fp .row{grid-template-columns:1fr}}
+.alloc td:nth-child(2),.alloc td:nth-child(3){font-weight:700}
+.moat td:first-child{min-width:120px;font-weight:500}
+.trend{font-family:var(--f-mono);font-weight:700}
+.trend.up{color:var(--good)} .trend.dn{color:var(--bad)} .trend.fl{color:var(--ink-3)}
+.back{font-size:13.5px;margin-top:12px} .back a{color:var(--copper)}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Buyer's view · Product differentiation · Moat · 資料截至 2026-10-28</div>
+  <h1><span class="tk">3711</span> 如果我是客戶：日月光、Amkor、長電怎麼選</h1>
+  <p class="sub">換到買方的位置看：一家晶片公司要把封測外包出去，會用哪些條件挑供應商？三家在每個條件上各有什麼能拿出來的證據？不同類型的客戶最後會選誰？最後把差異收斂成護城河：哪些優勢客戶換不掉、會不會越來越強。</p>
+  <div class="meta"><span>證據取自 Amkor 2025 10-K、日月光 2025 20-F、長電 2025 年報與最新法說</span><span>評分＝本頁研究判斷</span><span>非投資建議</span></div>
+  <nav class="toc" aria-label="章節">
+    <a href="#verdict">結論</a><a href="#criteria">選商條件評分</a><a href="#tool">選你的客戶類型</a><a href="#vs-amkor">日月光 vs Amkor</a><a href="#vs-jcet">日月光 vs 長電</a><a href="#footprint">產能放在哪</a><a href="#moat">護城河</a><a href="#sources">來源</a>
+  </nav>
+  <p class="back">← <a href="https://60401ben-art.github.io/ase-3711-peer-map/">競品地圖（主報告）</a>　·　<a href="https://60401ben-art.github.io/ase-3711-peer-map/h2h.html">十場一對一對決</a></p>
+</header>
+
+<section id="verdict">
+  <div class="stn"><span class="code">00 · SUMMARY</span><h2>一句話：要靠台積電 CoWoS 出貨選日月光，要「不在台灣」選 Amkor，中國客戶或在乎價格選長電</h2></div>
+  <ol class="verdict">
+    <li><b class="k">日月光</b><span>賣的是「離台積電最近的一條龍產能」：封裝、測試、自有載板、SiP、EMS 都在集團內，樓地板面積是 Amkor 的 2.9 倍，而且約 78% 在台灣。AI 客戶選它是因為 CoWoS 晶圓出廠後最短路徑就是它。代價是要接受漲價，產能也不一定排得到。</span></li>
+    <li><b class="k">Amkor</b><span>賣的是「分散與美國」：八個國家設廠、最大的韓國也只占 35%，2028 年底亞利桑那量產，還是台積電、NVIDIA 簽長約的美國封測夥伴。蘋果（占 Amkor 營收 29.8%）、Qualcomm（11.1%）與車用 IDM 選它，是為了地緣分散與車規品質。代價是要用預付款換產能。</span></li>
+    <li><b class="k">長電</b><span>賣的是「中國在地與成本」：境外客戶占 78.6%，但境外毛利率只有 12.2%（境內 20.4%），代表對國際客戶主要靠價格競爭。中國 IC 設計公司與記憶體客戶（收購晟碟上海）會選它；美系先進 AI 晶片受出口管制，基本上不會選它。</span></li>
+    <li><b class="k">護城河</b><span>日月光最深的是規模與「台積電生態系鄰近」，正在變強；但後者同時是集中風險。Amkor 的地理分散護城河正因美國在地化變寬。長電的政策護城河（中國替中國）只在中國有效。</span></li>
+  </ol>
+</section>
+
+<section id="criteria">
+  <div class="stn"><span class="code">01 · CRITERIA</span><h2>客戶用九個條件挑封測廠：三家各拿得出什麼證據</h2></div>
+  <p class="lead">骨架取自 Amkor 2025 年 10-K 列的產業「關鍵競爭因素」：先進技術、地點、規模、共同開發、產能投資、品質、價格、交期。本頁把「地點」拆成三個（離台積電近、供應鏈分散／美國在地、中國在地），因為不同客戶要的地點完全相反。評分 1–5 分，越高對客戶越有利；「價格」越高分代表越便宜。</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>選商條件</th><th>日月光</th><th>Amkor</th><th>長電</th></tr></thead>
+      <tbody id="crit-body"></tbody>
+    </table>
+  </div>
+  <p class="note">評分是本頁研究判斷；每格下方的小字是判斷依據，皆來自公司申報文件或法說。</p>
+</section>
+
+<section id="tool">
+  <div class="stn"><span class="code">02 · YOUR CALL</span><h2>選你的客戶類型：權重不同，首選就不同</h2></div>
+  <p class="lead">五種典型客戶的權重是本頁假設（每組合計 100）。也可以自己拉權重，看排序怎麼變。</p>
+  <div class="picker" role="group" aria-label="客戶類型" id="picker"></div>
+  <p class="persona-note" id="persona-note"></p>
+  <div class="fig" id="fig-tool" style="padding-bottom:16px">
+    <h4 id="tool-title">加權總分（滿分 100）</h4>
+    <div class="result" id="result"></div>
+    <p class="why" id="why"></p>
+    <details class="tv" style="margin-top:12px"><summary>調整權重</summary>
+      <div class="wgrid" id="wgrid"></div>
+      <p class="note">權重自動換算成占比；總和不必剛好 100。</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===== ASE vs Amkor ===== -->
+<section id="vs-amkor">
+  <div class="stn group-h"><span class="code">03 · ASE vs AMKOR</span><h2>日月光 vs Amkor：產品差異化不在「會不會做」，而在「在哪裡做、跟誰綁、一次包多少」</h2></div>
+  <p class="lead">兩家的技術清單高度重疊：都有 2.5D、扇出、覆晶、SiP、晶圓級測試、CPO 研發。客戶真正感受到的差異在四件事：跟台積電的距離、地理分散、一站式範圍、拿產能的方式。</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>產品／服務線</th><th>日月光（含矽品）</th><th>Amkor</th><th>客戶角度的差異</th></tr></thead>
+      <tbody>
+        <tr><td>AI 2.5D（CoWoS 類）</td><td>CoWoS 的 oS 後段＋CP 測試外包主力；CoWoS full process 2026 約 US$0.3bn；FoCoS、FoCoS-Bridge（VIPack 平台）</td><td>2.5D（TSV＋矽中介層）、HDFO（SWIFT、S-Connect）；NVIDIA 多年期合作；台積電亞利桑那 10 年協議（含 CoWoS）</td><td>晶圓在台灣出廠就交日月光（矽品），運送與交接最短；Amkor 主要是第二來源，2028 年後多一個「美國製造」選項</td></tr>
+        <tr><td>AI 晶片測試</td><td>測試占總營收 11.1%（約 ATM 的 19%）；LEAP 的 25% 是測試（CP 約 3/4）；ASE Test Taiwan 專做先進邏輯／3D IC 測試</td><td>10-K 強調晶圓級測試專長，但沒有單獨揭露測試營收</td><td>AI 晶片測試時間拉長，日月光能「封裝＋測試」同廠接手，少一次轉運與測試程式關聯（correlation）</td></tr>
+        <tr><td>SiP 系統級封裝</td><td>iSiP；子公司環旭做穿戴 SiP 模組（越南海防廠專做穿戴 IC 組裝）</td><td>先進 SiP 2025 營收約 US$3.08bn，約占總營收 46%；蘋果 29.8%</td><td>Amkor 的 SiP 量體與蘋果綁定最深；日月光的賣點是 SiP 加上下游 EMS 一路做到模組</td></tr>
+        <tr><td>車用／工業</td><td>2024 年買下 Infineon 菲律賓、韓國後段廠；韓國坡州專做 RF／感測／車用；檳城以 IDM 為主</td><td>車用工業占 22%（3Q26）；日本廠約 178 萬平方英尺（第二大據點）、葡萄牙、菲律賓、馬來西亞貼近歐日 IDM</td><td>車用客戶看認證與長期供貨，Amkor 的日本、歐洲據點較有優勢；日月光靠併購 Infineon 廠補強</td></tr>
+        <tr><td>材料與載板</td><td>自有載板與材料廠（日月光電子、上海），2025 年供應約 8.7% 的載板需求</td><td>載板全部外購（10-K：主要材料為載板、導線架等）</td><td>載板缺貨時日月光多一點緩衝，但 8.7% 不足以完全自給</td></tr>
+        <tr><td>拿產能的方式</td><td>公司自己出資擴產（2026 capex US$10.5bn）；但產能吃緊，財務長說價格環境「非常友善」</td><td>客戶預付款換產能：2025 年起 12 家客戶簽約；NVIDIA US$1.5bn</td><td>選日月光：不用先付錢，但要接受漲價與排隊；選 Amkor：先付錢鎖產能，毛利率低約 9pp，比價空間較大</td></tr>
+        <tr><td>研發投入（2025）</td><td>US$1.05bn（集團合併，含 EMS）</td><td>US$0.17bn</td><td>日月光研發規模約 6 倍，新封裝世代通常先在日月光量產</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>如果我是這些客戶，會怎麼分單（研究判斷）</h3>
+  <div class="tbl alloc">
+    <table>
+      <thead><tr><th>客戶類型</th><th>主供應商</th><th>第二供應商</th><th>為什麼</th></tr></thead>
+      <tbody>
+        <tr><td>NVIDIA／AMD／Broadcom ASIC（台積電 CoWoS）</td><td>日月光（矽品）</td><td>Amkor</td><td>CoWoS 晶圓在台灣，最快的 oS 與測試就在旁邊；Amkor 用來分散台灣風險，並為 2028 年後美國製造鋪路。媒體報導 AMD 因 CoWoS 配額不足，把一半需求轉給日月光、矽品、Amkor</td></tr>
+        <tr><td>Apple 手機／穿戴</td><td>Amkor</td><td>日月光（含環旭）</td><td>蘋果占 Amkor 營收 29.8%，關係最深、SiP 量體最大；蘋果是 Amkor 亞利桑那廠第一個、也是最大的客戶（2023/11 蘋果公告）；日月光以環旭 SiP 與封測補位</td></tr>
+        <tr><td>Qualcomm／MediaTek 手機 SoC、RF</td><td>兩家並用</td><td>—</td><td>通訊都是兩家最大的應用（日月光 ATM 45.8%、Amkor 37%）；Qualcomm 占 Amkor 11.1%</td></tr>
+        <tr><td>Infineon／NXP／瑞薩等車用 IDM</td><td>Amkor</td><td>日月光</td><td>車規認證與地點：Amkor 日本、葡萄牙、菲律賓、馬來西亞；日月光有買下的 Infineon 廠與檳城、坡州廠</td></tr>
+        <tr><td>要求美國製造的客戶</td><td>Amkor（2028 年底）</td><td>—</td><td>日月光公司說製程先在台灣做到規模，美國只有測試與研發據點</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mean"><b>結論：</b>在 AI 高階封測，客戶的首選是日月光，Amkor 是「必要的第二來源」。在手機 SiP 與車用，Amkor 跟日月光不相上下，甚至更受青睞。所以 Amkor 不太可能搶走日月光的 AI 主單，但會吃下所有「不能只放台灣」的增量。客戶的雙供應商策略讓兩家都會長大，只是日月光吃的是價格，Amkor 吃的是長約。</p>
+</section>
+
+<!-- ===== ASE vs JCET ===== -->
+<section id="vs-jcet">
+  <div class="stn group-h"><span class="code">04 · ASE vs JCET</span><h2>日月光 vs 長電：技術清單相似，客戶選長電多半是因為「在中國」或「便宜」</h2></div>
+  <p class="lead">長電的產品線幾乎跟日月光一樣齊：SiP、WLCSP、FC、eWLB、PoP、XDFOI 2.5D、CPO、功率模組、車用。差在三件事：拿不到台積電 CoWoS 外溢、美系先進 AI 晶片有出口管制天花板、國際客戶主要靠價格。</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>產品／服務線</th><th>日月光（含矽品）</th><th>長電</th><th>客戶角度的差異</th></tr></thead>
+      <tbody>
+        <tr><td>AI 2.5D／高效能運算</td><td>CoWoS 類量產、LEAP 2026 &gt;US$3.5bn</td><td>XDFOI® 已量產（2D／2.5D／3D）；大顆 FCBGA 十多年經驗；HPC 先進封裝擴產 RMB 23.5 億（江陰，建設期 20 個月）；運算電子 2025 年增 42.6%</td><td>用台積電 CoWoS 的美系 AI 客戶選日月光；中國國產 AI 晶片（在中國晶圓廠投片）選長電</td></tr>
+        <tr><td>記憶體</td><td>非主力</td><td>收購晟碟（SanDisk 上海）80%；32 層快閃堆疊；與全球前三大記憶體廠合作；高容量記憶體 SiP 擴產 RMB 18.5 億</td><td>記憶體客戶，長電明顯較強</td></tr>
+        <tr><td>RF／手機</td><td>通訊占 ATM 45.8%</td><td>通訊電子占 36.4%；高密度 3D SiP、AiP、腔體屏蔽；HBPoP</td><td>技術相近；國際手機大廠以日月光、Amkor 為主，中國手機鏈選長電</td></tr>
+        <tr><td>車用</td><td>Infineon 廠、坡州、檳城</td><td>中國大陸首家加入 AEC 的封測廠；八大基地全數通過 IATF 16949；上海臨港車用專廠 2026/3 投產</td><td>外資車用 IDM 在中國的在地化需求，長電是現成選項</td></tr>
+        <tr><td>電源模組</td><td>環旭做伺服器供電（研發中）</td><td>2.5D 垂直 VCORE 電源模組已量產；AI 資料中心電源 FCLGA 擴產 RMB 16.4 億</td><td>AI 資料中心電源，長電起步較早</td></tr>
+        <tr><td>價格</td><td>ATM 毛利率 27.3%（2Q26）</td><td>境外銷售毛利率 12.2%、境內 20.4%（2025）</td><td>長電對國際客戶的毛利率只有日月光的一半不到，買方議價空間大</td></tr>
+        <tr><td>地緣</td><td>台灣為主；中國有矽品蘇州</td><td>中國江陰、滁州、宿遷、上海＋韓國、新加坡；海外工廠 2025 營收 RMB 225.6 億（58%）</td><td>非中國客戶可以只用長電的韓國、新加坡廠，降低「中國製」疑慮</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>如果我是這些客戶，會怎麼選（研究判斷）</h3>
+  <div class="tbl alloc">
+    <table>
+      <thead><tr><th>客戶類型</th><th>首選</th><th>次選</th><th>為什麼</th></tr></thead>
+      <tbody>
+        <tr><td>美系 AI 加速器（台積電投片）</td><td>日月光</td><td>—（長電不適用）</td><td>拿不到 CoWoS 外溢、出口管制限制；長電不在這張名單上</td></tr>
+        <tr><td>中國國產 AI／CPU 晶片</td><td>長電</td><td>通富、華天</td><td>在地、國資支持、XDFOI；日月光在中國沒有先進 2.5D 產能</td></tr>
+        <tr><td>記憶體廠的模組與 SSD</td><td>長電</td><td>日月光</td><td>晟碟上海、快閃堆疊經驗；三星也正把一般記憶體模組外包給 OSAT</td></tr>
+        <tr><td>國際客戶的成熟封裝（打線、QFN、一般覆晶），且價格敏感</td><td>長電（韓國、新加坡或中國廠）</td><td>日月光</td><td>長電境外毛利率 12.2%，報價空間最大；日月光正在漲價</td></tr>
+        <tr><td>國際客戶的高階手機 SiP</td><td>日月光</td><td>長電（韓國廠）</td><td>規模與研發（日月光研發 US$1.05bn，長電約 US$0.29bn [E]）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mean"><b>結論：</b>長電跟日月光真正搶的是「中國市場」和「國際客戶的成熟封裝」，不是 AI 高階。對日月光而言，這塊本來就是毛利最低、日月光也在讓出的產品（2021 年出售大陸四廠）。所以長電對日月光的威脅主要在價格戰，不在技術。</p>
+</section>
+
+<section id="footprint">
+  <div class="stn"><span class="code">05 · FOOTPRINT</span><h2>產能放在哪：客戶最在意的「地點」差異，一張圖看完</h2></div>
+  <div class="fig">
+    <h4>主要封測廠區樓地板面積分布（%）</h4>
+    <p class="cap">日月光約 78% 在台灣，Amkor 最大的韓國也只有 35%。這同時是日月光最大的優勢（貼近台積電）與最大的風險（集中）。</p>
+    <div class="fp" id="fp"></div>
+    <p class="note">日月光：2025 年 20-F 主要廠區（截至 2026/1/31），只計封測與材料，不含環旭 EMS；合計約 3,640 萬平方英尺。Amkor：2025 年 10-K Item 2，合計約 1,260 萬平方英尺，亞利桑那新廠尚未計入。長電年報不揭露面積，改用營收：海外工廠（韓國、新加坡）2025 年營收 RMB 225.6 億，約占 58%。</p>
+  </div>
+</section>
+
+<section id="moat">
+  <div class="stn"><span class="code">06 · MOAT</span><h2>護城河：哪些優勢客戶換不掉、而且會越來越強</h2></div>
+  <p class="lead">判斷標準：客戶要換掉這家供應商要付出多少代價，以及這個代價在未來 2–3 年會變大還是變小。箭頭表示趨勢。</p>
+  <div class="tbl moat">
+    <table>
+      <thead><tr><th>護城河</th><th>日月光</th><th>Amkor</th><th>長電</th></tr></thead>
+      <tbody>
+        <tr><td>規模經濟</td><td><span class="chip g">強</span> <span class="trend up">↑</span><span class="ev">封測樓地板 2.9 倍於 Amkor；2026 capex US$10.5bn 是 Amkor 4 倍；毛利率高 10pp</span></td><td><span class="chip n">中</span> <span class="trend fl">→</span><span class="ev">全球第二，但 capex 只有日月光 1/4</span></td><td><span class="chip n">中</span> <span class="trend up">↑</span><span class="ev">2026 投資計畫上修到 RMB 182 億，跟 Amkor 同級</span></td></tr>
+        <tr><td>轉換成本</td><td><span class="chip g">強</span> <span class="trend up">↑</span><span class="ev">客戶要對每個廠區分別做認證，測試還要做程式關聯；封裝＋測試＋材料一條龍，換一家要重來好幾段</span></td><td><span class="chip g">強</span> <span class="trend up">↑</span><span class="ev">預付款長約（12 家＋NVIDIA）用合約把客戶綁住；SiP 與蘋果合作深</span></td><td><span class="chip n">中</span> <span class="trend fl">→</span><span class="ev">國際客戶靠價格，轉換成本低；國內客戶有在地黏著</span></td></tr>
+        <tr><td>生態系鄰近（台積電）</td><td><span class="chip g">強</span> <span class="trend fl">→</span><span class="ev">CoWoS 外溢主要承接者；但台積電開始找 GlobalFoundries、Amkor 分散</span></td><td><span class="chip n">中</span> <span class="trend up">↑</span><span class="ev">台積電美國的封測夥伴（10 年協議）</span></td><td><span class="chip b">弱</span> <span class="trend fl">→</span><span class="ev">拿不到台積電先進封裝外溢</span></td></tr>
+        <tr><td>地理／政策</td><td><span class="chip n">中</span> <span class="trend dn">↓</span><span class="ev">約 78% 在台灣；美國只有測試研發；在地化要求升高時是缺口</span></td><td><span class="chip g">強</span> <span class="trend up">↑</span><span class="ev">八國設廠＋亞利桑那＋CHIPS 補助最高 US$407m</span></td><td><span class="chip g">強（限中國）</span> <span class="trend up">↑</span><span class="ev">Amkor 10-K 自己承認：貿易緊張讓「中國替中國」的陸廠競爭變強；華潤國資控股</span></td></tr>
+        <tr><td>技術／智財</td><td><span class="chip g">強</span> <span class="trend up">↑</span><span class="ev">研發 US$1.05bn；VIPack、CoWoS full process、面板級 310×310mm 1Q27 量產</span></td><td><span class="chip n">中</span> <span class="trend fl">→</span><span class="ev">研發 US$0.17bn；SWIFT、S-Connect、2.5D</span></td><td><span class="chip n">中</span> <span class="trend up">↑</span><span class="ev">研發 RMB 20.9 億；XDFOI、CPO 交樣、玻璃基板</span></td></tr>
+        <tr><td>成本／價格</td><td><span class="chip n">中</span> <span class="trend fl">→</span><span class="ev">規模壓成本，但選擇漲價而非降價</span></td><td><span class="chip n">中</span> <span class="trend fl">→</span><span class="ev">越南、菲律賓低成本廠；亞利桑那成本較高</span></td><td><span class="chip g">強</span> <span class="trend fl">→</span><span class="ev">境外毛利率 12.2%：最願意用價格搶單</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mean"><b>給 pitch 的一句話：</b>日月光的護城河是「規模＋台積電生態系＋一條龍」三層疊起來的轉換成本，AI 時代三層都在變厚。唯一變薄的是地理這層：客戶越要求「不只在台灣」，Amkor 越能分到增量。這是 Bear case 最站得住的論點，也是 Q&amp;A 最可能被問的地方。</p>
+</section>
+
+<section id="sources" class="sources">
+  <div class="stn"><span class="code">REF</span><h2>資料來源</h2></div>
+  <ol>
+    <li>Amkor <a href="https://www.sec.gov/Archives/edgar/data/1047127/000104712726000014/amkr-20251231.htm">2025 年 10-K</a>：前十大客戶 72%、Apple 29.8%、Qualcomm 11.1%；先進 SiP 營收約 US$3.08bn；技術清單（HDFO／SWIFT／S-Connect／2.5D／CPO）；競爭對手與關鍵競爭因素；Item 2 各國廠區面積；研發 US$166.7m。<a href="https://www.sec.gov/Archives/edgar/data/0001047127/000104712726000049/amkr9302026erex-991.htm">3Q26 8-K</a>（終端市場占比）。</li>
+    <li>日月光 <a href="https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/d50802d20f.htm">2025 年 20-F</a>：前五大客戶 46.5%；封測應用別（通訊 45.8%、運算 24.0%）；營收地區（美國 56.7%）；封裝／測試／EMS 占 47.8／11.1／39.9%；主要廠區與面積；自有材料供應 8.7% 載板需求；研發 NT$32.85bn（US$1,047m）；收購 Infineon 菲律賓與韓國廠；客戶需逐廠認證與測試關聯。2Q26 法說逐字稿（LEAP、定價環境、美國據點）。</li>
+    <li>長電 <a href="http://static.cninfo.com.cn/finalpage/2026-04-10/1225091498.PDF">2025 年年度報告</a>：應用別（通訊 36.4%、消費 23.6%、運算 21.3%、汽車 9.6%、工業醫療 9.1%）；境內／境外銷售與毛利率；前五大客戶 48.8%；海外工廠營收 RMB 225.6 億；技術與車規認證；研發 RMB 20.86 億。<a href="http://static.cninfo.com.cn/finalpage/2026-09-04/1225547414.PDF">2026 定增可行性報告</a>；<a href="http://static.cninfo.com.cn/finalpage/2026-10-23/1225617213.PDF">3Q26 季報</a>。</li>
+    <li>台積電—Amkor 10 年協議：<a href="https://focustaiwan.tw/sci-tech/202606180014">Focus Taiwan 2026/6/18</a>；Apple—Amkor 亞利桑那：<a href="https://www.apple.com/newsroom/2023/11/apple-announces-expanded-partnership-with-amkor-for-silicon-packaging/">Apple Newsroom 2023/11/30</a>；NVIDIA—Amkor：<a href="https://secure.businesswire.com/news/home/20260723873230/en/Amkor-Technology-Announces-Strategic-Partnership-with-NVIDIA-to-Expand-Advanced-Packaging-and-Test-for-Next-Generation-AI-Infrastructure">Business Wire 2026/7/23</a>；AMD 轉單：<a href="https://abmedia.io/tsmc-cowos-monthly-capacity-200k-2027">鏈新聞</a>；三星模組外包：<a href="https://trendforce.com/news/2026/09/16/news-samsung-reportedly-shifts-cheonan-capacity-to-hbm-packaging-outsource-conventional-memory-modules">TrendForce 9/16</a>。</li>
+    <li>匯率 [E]：USD/RMB 7.18。</li>
+  </ol>
+  <p class="disc">本頁為課堂研究用途。評分、權重、分單建議都是研究判斷，不代表實際客戶的採購安排；非投資建議。</p>
+</section>
+</div>
+
+<script>
+(function(){
+  const F=[
+    {k:'tech',n:'先進封裝技術',s:[5,4,3],e:['CoWoS 類量產＋full process；VIPack；研發 US$1.05bn','2.5D、HDFO（SWIFT／S-Connect）；研發 US$0.17bn','XDFOI 量產、2.5D 推進中；拿不到 CoWoS 外溢']},
+    {k:'tsmc',n:'離台積電近',s:[5,3,1],e:['約 78% 樓地板在台灣，高雄、中壢、台中、彰化、雲林、新竹','台灣廠約 9%；台積電亞利桑那合作（2028 後）','中國／韓國／新加坡；不在 CoWoS 流程內']},
+    {k:'div',n:'分散／美國在地',s:[2,5,2],e:['台灣集中；美國只有測試與研發','八國設廠、最大韓國 35%；亞利桑那 2028 年底量產','中國總部；美系客戶有出口管制顧慮']},
+    {k:'cn',n:'中國在地',s:[3,2,5],e:['矽品蘇州等；2021 年已出售大陸四廠','上海廠約占 11%','江陰、滁州、宿遷、上海；國資控股、國產替代']},
+    {k:'scale',n:'規模與量產經驗',s:[5,4,3],e:['ATM 2025 US$12.3bn；樓地板約 3,640 萬平方英尺','US$6.71bn；約 1,260 萬平方英尺','約 US$5.4bn [E]']},
+    {k:'cap',n:'擴產與產能承諾',s:[5,3,3],e:['2026 capex US$10.5bn、自己出資；但 2026 產能吃緊','約 US$2.5bn；新產能靠客戶預付款','2026 投資計畫 RMB 182 億＋定增 65 億']},
+    {k:'qual',n:'品質／車規',s:[4,5,4],e:['收購 Infineon 後段廠；坡州、檳城服務 IDM','車用工業占 22%；日本、葡萄牙、菲律賓貼近歐日 IDM','八大基地全數 IATF 16949；中國首家 AEC 成員']},
+    {k:'price',n:'價格（越高越便宜）',s:[2,3,5],e:['ATM 毛利率 27.3%；財務長：定價環境「非常友善」','毛利率 18.3%，比日月光低約 9pp；Amkor 法說上分析師提到台灣同業在漲價','境外毛利率 12.2%：報價最積極']},
+    {k:'turn',n:'一站式／交期',s:[5,4,4],e:['封裝＋測試＋自有載板＋SiP＋EMS（環旭）','turnkey 含晶圓凸塊、針測、封裝、系統測試、直送','晶圓中測到成品測試一站式']}
+  ];
+  const P=[
+    {n:'美系 AI 加速器',d:'NVIDIA／AMD／Broadcom ASIC 這類用台積電 CoWoS 的客戶：先看技術、離台積電多近、產能排不排得到。',w:{tech:30,tsmc:25,div:10,cn:0,scale:10,cap:20,qual:0,price:0,turn:5}},
+    {n:'手機 SoC／RF／SiP',d:'Apple、Qualcomm、MediaTek：量大、要規模與成本，也要分散供應鏈。',w:{tech:20,tsmc:10,div:15,cn:0,scale:20,cap:10,qual:5,price:10,turn:10}},
+    {n:'車用／工業 IDM',d:'Infineon、NXP、瑞薩、TI：最在乎車規品質與地點分散，技術要求反而不高。',w:{tech:5,tsmc:0,div:25,cn:5,scale:10,cap:5,qual:35,price:10,turn:5}},
+    {n:'中國 IC 設計',d:'國產 AI、手機、電源晶片：在中國投片、要在地供應與價格。',w:{tech:20,tsmc:0,div:0,cn:40,scale:5,cap:10,qual:5,price:15,turn:5}},
+    {n:'要求美國製造',d:'受關稅、政府採購或在地化要求約束的客戶：地點壓倒一切。',w:{tech:15,tsmc:0,div:50,cn:0,scale:5,cap:10,qual:10,price:5,turn:5}}
+  ];
+  const NM=['日月光','Amkor','長電'], COL=['--s1','--s2','--s3'];
+  const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const dots=s=>'<span class="sc" aria-label="'+s+' 分">'+[1,2,3,4,5].map(i=>`<i class="${i<=s?'on':''}"></i>`).join('')+'</span>';
+  document.getElementById('crit-body').innerHTML=F.map(f=>`<tr><td>${f.n}</td>${f.s.map((s,j)=>`<td>${dots(s)} <span class="num">${s}</span><span class="ev">${f.e[j]}</span></td>`).join('')}</tr>`).join('');
+
+  let W={...P[0].w}, cur=0;
+  const picker=document.getElementById('picker');
+  picker.innerHTML=P.map((p,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===0}">${p.n}</button>`).join('')+'<button type="button" data-i="-1" aria-pressed="false">自訂</button>';
+  const wgrid=document.getElementById('wgrid');
+  wgrid.innerHTML=F.map(f=>`<label class="wrow"><span>${f.n}</span><input type="range" min="0" max="50" step="5" data-k="${f.k}"><output data-o="${f.k}"></output></label>`).join('');
+  function syncInputs(){F.forEach(f=>{wgrid.querySelector(`input[data-k="${f.k}"]`).value=W[f.k];wgrid.querySelector(`output[data-o="${f.k}"]`).textContent=W[f.k]})}
+  function render(){
+    const tot=F.reduce((a,f)=>a+W[f.k],0)||1;
+    const sc=[0,1,2].map(j=>F.reduce((a,f)=>a+W[f.k]*f.s[j],0)/tot/5*100);
+    const best=sc.indexOf(Math.max(...sc));
+    document.getElementById('result').innerHTML=sc.map((v,j)=>`<div class="rrow${j===best?' win':''}"><div class="nm">${NM[j]}</div><div class="tr"><i style="width:${v}%;background:${css(COL[j])}"></i></div><div class="v">${v.toFixed(0)}</div></div>`).join('');
+    const top=F.map(f=>({f,w:W[f.k]})).sort((a,b)=>b.w-a.w).slice(0,3).filter(x=>x.w>0);
+    document.getElementById('why').innerHTML='這組權重最看重：'+top.map(x=>`<strong>${x.f.n}</strong>（${Math.round(x.w/tot*100)}%）`).join('、')+`。首選 <strong>${NM[best]}</strong>，領先第二名 ${(sc[best]-[...sc].sort((a,b)=>b-a)[1]).toFixed(0)} 分。`;
+    document.getElementById('persona-note').textContent=cur>=0?P[cur].d:'自訂權重：拉下方滑桿。';
+  }
+  picker.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=+b.dataset.i;picker.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(cur>=0){W={...P[cur].w};syncInputs()}else{wgrid.closest('details').open=true}render()});
+  wgrid.addEventListener('input',e=>{const k=e.target.dataset.k;if(!k)return;W[k]=+e.target.value;wgrid.querySelector(`output[data-o="${k}"]`).textContent=W[k];if(cur!==-1){cur=-1;picker.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.i==='-1'))}render()});
+  syncInputs();render();
+
+  const FP=[
+    {n:'日月光',u:'封測＋材料',d:[['台灣',77.8,'--s1'],['中國',10.9,'--muted-bar'],['馬來西亞',4.8,'--s2'],['韓國',4.2,'--s3'],['其他',2.3,'--ref-bar']]},
+    {n:'Amkor',u:'10-K Item 2',d:[['韓國',35.5,'--s3'],['日本',14.1,'--copper'],['越南',11.6,'--ink-3'],['中國',11.1,'--muted-bar'],['菲律賓',10.5,'--good'],['台灣',9.3,'--s1'],['葡萄牙',4.6,'--bad'],['馬來西亞',3.4,'--s2']]},
+    {n:'長電',u:'按營收',d:[['中國廠',42,'--muted-bar'],['韓國＋新加坡廠',58,'--s3']]}
+  ];
+  function drawFP(){document.getElementById('fp').innerHTML=FP.map(r=>`<div class="row"><div class="lab">${r.n}<small>${r.u}</small></div><div class="track">${r.d.map(([k,v,c])=>`<span style="width:${v}%;background:${css(c)}" title="${k} ${v}%">${v>=8?k+' '+Math.round(v)+'%':''}</span>`).join('')}</div></div>`).join('')+'<p class="note" style="margin-top:2px">未標字的小區塊：日月光「其他」＝新加坡、美國 ISE Labs、日本、菲律賓；滑鼠移上可看占比。</p>'}
+  drawFP();
+  const rer=()=>{render();drawFP()};
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',rer);
+  new MutationObserver(rer).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+
+</body>
+</html>
